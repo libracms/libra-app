@@ -8,6 +8,7 @@ return array(
             //Alias for every controller prefixed by lowercase namespace
             'alias' => array(
                 'libra-app-index'         => 'LibraApp\Controller\IndexController',
+                'index'         => 'LibraApp\Controller\IndexController',
             ),
 
             // Setup for controllers.
@@ -54,7 +55,7 @@ return array(
                                 'route'    => '/',
                                 'defaults' => array(
                                     'namespace'  => 'LibraApp',
-                                    'controller' => 'libra-app-index',
+                                    'controller' => 'index',
                                     'action'     => 'index',
                                 ),
                             ),
@@ -95,9 +96,11 @@ return array(
             'Zend\View\Resolver\TemplatePathStack' => array(
                 'parameters' => array(
                     'paths'  => array(
-                        'libra-app' => __DIR__ . '/../view',
-                        'libra-app-index' => __DIR__ . '/../view',
-                        'libra_app_index' => __DIR__ . '/../view/libra-app',
+                        'libra-glob'    => __DIR__ . '/../view',
+                        'libra-app'     => __DIR__ . '/../view/libra-app',
+                        //'layout'    => __DIR__ . '/../view/libra-app/layout/default',
+                        //'libra-app/layout' => __DIR__ . '/../view/libra-app/default/layout',
+                        //'modules-override' => '../view/',
                     ),
                 ),
             ),
@@ -124,14 +127,14 @@ return array(
                 'parameters' => array(
                     'displayNotFoundReason' => true,
                     'displayExceptions'     => true,
-                    'notFoundTemplate'      => 'libra-app/error/404',
+                    'notFoundTemplate'      => 'libra-app/layout/error/404',
                 ),
             ),
             // View script rendered in case of other exceptions
             'Zend\Mvc\View\ExceptionStrategy' => array(
                 'parameters' => array(
                     'displayExceptions' => true,
-                    'exceptionTemplate' => 'libra-app/error/index',
+                    'exceptionTemplate' => 'libra-app/layout/error/exception',
                 ),
             ),
         ),
