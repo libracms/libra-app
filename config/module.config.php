@@ -7,7 +7,7 @@ return array(
 
             //Alias for every controller prefixed by lowercase namespace
             'alias' => array(
-                'application_index'         => 'Application\Controller\IndexController'
+                'libra-app-index'         => 'LibraApp\Controller\IndexController',
             ),
 
             // Setup for controllers.
@@ -42,8 +42,8 @@ return array(
                                     'param3'     => '[a-zA-Z0-9_-]*',
                                 ),
                                 'defaults' => array(
-                                    'namespace'  => 'application',
-                                    'controller' => 'Application\Controller\IndexController',
+                                    'namespace'  => 'LibraApp',
+                                    'controller' => 'libra-app-index',
                                     'action'     => 'index',
                                 ),
                             ),
@@ -53,8 +53,8 @@ return array(
                             'options' => array(
                                 'route'    => '/',
                                 'defaults' => array(
-                                    'namespace'  => 'application',
-                                    'controller' => 'index',
+                                    'namespace'  => 'LibraApp',
+                                    'controller' => 'libra-app-index',
                                     'action'     => 'index',
                                 ),
                             ),
@@ -86,6 +86,7 @@ return array(
                 'parameters' => array(
                     'map'  => array(
                         //'application/layout/layout' => __DIR__ . '/../view/application/layout/layout.phtml',
+                        //'libra-app/layout/layout' => __DIR__ . '/../view/libra-app/layout/default/layout.phtml',
                     ),
                 ),
             ),
@@ -94,14 +95,16 @@ return array(
             'Zend\View\Resolver\TemplatePathStack' => array(
                 'parameters' => array(
                     'paths'  => array(
-                        'application' => __DIR__ . '/../view',
+                        'libra-app' => __DIR__ . '/../view',
+                        'libra-app-index' => __DIR__ . '/../view',
+                        'libra_app_index' => __DIR__ . '/../view/libra-app',
                     ),
                 ),
             ),
             // View for the layout
             'Zend\Mvc\View\DefaultRenderingStrategy' => array(
                 'parameters' => array(
-                    'layoutTemplate' => 'application/layout/layout',
+                    'layoutTemplate' => 'libra-app/layout/layout',
                 ),
             ),
             // Injecting the router into the url helper
@@ -121,14 +124,14 @@ return array(
                 'parameters' => array(
                     'displayNotFoundReason' => true,
                     'displayExceptions'     => true,
-                    'notFoundTemplate'      => 'application/error/404',
+                    'notFoundTemplate'      => 'libra-app/error/404',
                 ),
             ),
             // View script rendered in case of other exceptions
             'Zend\Mvc\View\ExceptionStrategy' => array(
                 'parameters' => array(
                     'displayExceptions' => true,
-                    'exceptionTemplate' => 'application/error/index',
+                    'exceptionTemplate' => 'libra-app/error/index',
                 ),
             ),
         ),
