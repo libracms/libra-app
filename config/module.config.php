@@ -8,7 +8,17 @@ return array(
             //Alias for every controller prefixed by lowercase namespace
             'alias' => array(
                 'libra-app-index'         => 'LibraApp\Controller\IndexController',
-                'index'         => 'LibraApp\Controller\IndexController',
+            ),
+
+            /**
+             * View helper(s)
+             */
+            'Zend\View\HelperLoader' => array(
+                'parameters' => array(
+                    'map' => array(
+                        '_'               => 'Zend\View\Helper\Translator',
+                    ),
+                ),
             ),
 
             // Setup for controllers.
@@ -55,7 +65,7 @@ return array(
                                 'route'    => '/',
                                 'defaults' => array(
                                     'namespace'  => 'LibraApp',
-                                    'controller' => 'index',
+                                    'controller' => 'libra-app-index',
                                     'action'     => 'index',
                                 ),
                             ),
