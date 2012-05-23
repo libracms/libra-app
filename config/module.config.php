@@ -55,11 +55,4 @@ return array(
             '_' => 'Zend\View\Helper\Translator',
         ),
     ),
-    'di' => array(
-        'instance' => array(
-            //Setup aliases
-            'alias' => array(
-            ),
-        ),
-    ),
 );

@@ -6,7 +6,10 @@ class Module
 {
     public function getConfig()
     {
-        return include __DIR__ . '/config/module.config.php';
+        $config = include __DIR__ . '/config/module.config.php';
+        $config['di']['instance'] = include __DIR__ . '/config/di.php';
+        $config = array_merge($config, include __DIR__ . '/config/libra-app.php');
+        return $config;
     }
 
     public function getAutoloaderConfig()
