@@ -2,16 +2,11 @@
 
 namespace LibraApp;
 
-use Zend\Module\Manager,
-    Zend\EventManager\StaticEventManager,
-    Zend\Module\Consumer\AutoloaderProvider;
-
-class Module implements AutoloaderProvider
+class Module
 {
-    public function init(Manager $moduleManager)
+    public function getConfig()
     {
-        $events = StaticEventManager::getInstance();
-        $events->attach('bootstrap', 'bootstrap', array($this, 'initializeView'), 100);
+        return include __DIR__ . '/config/module.config.php';
     }
 
     public function getAutoloaderConfig()
@@ -25,17 +20,13 @@ class Module implements AutoloaderProvider
         );
     }
 
-    public function getConfig()
+    /**
+     * executes on boostrap
+     * @param \Zend\Mvc\MvcEvent $e
+     * @return null
+     */
+    public function onBootstrap($e)
     {
-        return include __DIR__ . '/config/module.config.php';
     }
-    
-    public function initializeView($e)
-    {
-        $app          = $e->getParam('application');
-        $basePath     = $app->getRequest()->getBasePath();
-        $locator      = $app->getLocator();
-        $renderer     = $locator->get('Zend\View\Renderer\PhpRenderer');
-        $renderer->plugin('basePath')->setBasePath($basePath);
-    }
+
 }

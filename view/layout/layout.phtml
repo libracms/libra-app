@@ -5,9 +5,10 @@ $this->headTitle()->setSeparator(' - ')
                   ->setAutoEscape(false);
 
 $basePath = $this->basePath();
+$layoutPath = $basePath . '/vendor/libra/libra-app/layout/default';
 $this->headLink()->appendStylesheet($basePath . '/vendor/twitterbootstrap/css/bootstrap.min.css')
                  //->appendStylesheet($basePath . '/vendor/jquery-ui/css/flick/jquery-ui-1.8.18.custom.css')
-                 ->appendStylesheet($basePath . '/vendor/libra/libra-app/layout/default/css/style.css');
+                 ->appendStylesheet($basePath . $layoutPath . '/css/style.css');
 
 $this->headLink(array(
             'rel'  => 'shortcut icon',
@@ -17,7 +18,7 @@ $this->headLink(array(
 
 // HTML5 shim, for IE6-8 support of HTML elements
 $this->headScript()
-    ->appendFile($basePath . '/vendor/libra/libra-app/js/html5.js', 'text/javascript',
+    ->appendFile($basePath . $layoutPath . '/js/html5.js', 'text/javascript',
         array('conditional' => 'lt IE 9',))
     //->prependFile('https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js')
     ->appendFile('/vendor/jquery-ui/js/jquery-1.7.1.min.js')
@@ -48,18 +49,18 @@ echo $this->doctype();
       <header class="row">
         <div class="span12 header">
           <div id="head-top">
-            <?php echo $this->_('') ?>
+            <?php echo $this->translator('') ?>
           </div>
           <div style="text-align: center; padding: 0 25px;">
             <a id="brand-name" href="<?php echo $this->url('home') ?>"><?php echo $this->translator('♎ Libra CMS') ?></a>
           </div>
-          <div id="head-bottom"><?php echo $this->_('Free Open Source  Content Management system') ?></div>
+          <div id="head-bottom"><?php echo $this->translator('Free Open Source  Content Management system') ?></div>
           <div id="locales">
               <a href="<?php echo $this->url('default', array('controller' => 'locale', 'action' => 'switch')).'?sef=en' ?>">
-                  <img src="<?php echo $basePath."/images/gb.png"?>" alt="en" title="English"/>
+                  <img src="<?php echo $basePath.$layoutPath."/images/gb.png"?>" alt="en" title="English"/>
               </a>
               <a href="<?php echo $this->url('default', array('controller' => 'locale', 'action' => 'switch')).'?sef=ru' ?>">
-                  <img src="<?php echo $basePath."/images/ru.png"?>" alt="ru" title="Русский"/>
+                  <img src="<?php echo $basePath.$layoutPath."/images/ru.png"?>" alt="ru" title="Русский"/>
               </a>
               <div id="loginform">
                 <?php
@@ -96,11 +97,11 @@ echo $this->doctype();
 
       <footer class="well">
         <div class="row">
-          <div class="span3" style="text-align: center"><p><?php echo $this->_('© eJoom, 2012 - %1$d', date('Y')) ?> </p></div>
+          <div class="span3" style="text-align: center"><p><?php echo $this->translator('© eJoom, 2012 - %1$d', date('Y')) ?> </p></div>
           <div class="span6">
-            <p><?php echo $this->_('Privacy, Disclaimer, Terms & Conditions, and Copyright Info') ?></p>
+            <p><?php echo $this->translator('Privacy, Disclaimer, Terms & Conditions, and Copyright Info') ?></p>
           </div>
-          <div class="span2"><p>Based at <img src="/images/zf2-logo.png" /></p></div>
+          <div class="span2"><p>Based at <img src="<?php echo $layoutPath ?>/images/zf2-logo.png" /></p></div>
         </div>
       </footer>
       <p>Created by <a href="http://www.ejoom.com">eJoom Software</a>. All rights reserved.</p>
