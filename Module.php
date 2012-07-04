@@ -2,13 +2,16 @@
 
 namespace LibraApp;
 
+use Zend\Mvc\ModuleRouteListener;
+use Zend\Mvc\MvcEvent;
+
 class Module
 {
     public function getConfig()
     {
         $config = include __DIR__ . '/config/module.config.php';
         $config['di']['instance'] = include __DIR__ . '/config/di.php';
-        $config = array_merge($config, include __DIR__ . '/config/libra-app.php');
+        $config = array_merge_recursive($config, include __DIR__ . '/config/libra-app.php');
         return $config;
     }
 
@@ -28,8 +31,25 @@ class Module
      * @param \Zend\Mvc\MvcEvent $e
      * @return null
      */
-    public function onBootstrap($e)
+    public function onBootstrap(MvcEvent $e)
     {
+        $eventManager        = $e->getApplication()->getEventManager();
+        //$eventManager->attach('dispatch', array($this, 'setModuleAwareRouter'), 10000);
+        $moduleRouteListener = new ModuleRouteListener();
+        $moduleRouteListener->attach($eventManager);
+    }
+
+    /**
+     * set router scheme to /module-name/controller-name/action
+     * @param MvcEvent $e
+     */
+    public function setModuleAwareRouter(MvcEvent $e)
+    {
+        $routeMatch     = $e->getRouteMatch();
+        $controllerName = $routeMatch->getParam('controller');
+        $moduleName     = $routeMatch->getParam('module');
+        if ($moduleName && $controllerName) $controllerName = $moduleName . '-' . $controllerName;
+        $routeMatch->setParam('controller', $controllerName);
     }
 
 }

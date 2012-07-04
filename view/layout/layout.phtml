@@ -81,7 +81,9 @@ echo $this->doctype();
       <div class="row">
         <div class="span3">
           <div class="well sidebar-nav">
-          <?php echo $this->menu //@todo need fix?>
+          <?php echo $this->navigation() ?>
+          <?php //echo $this->widget('menu') //@todo need fix?>
+          <?php //echo $this->widgetGroup('leftbar') //@todo need fix?>
           </div>
         </div>
 
