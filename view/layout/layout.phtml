@@ -1,5 +1,6 @@
 <?php
 $user = null;
+//$this->plugin('translate')->setTranslator(new \Zend\I18n\Translator\Translator());
 
 $this->headTitle()->setSeparator(' - ')
                   ->setAutoEscape(false);
@@ -32,7 +33,7 @@ echo $this->doctype();
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <?php echo $this->headTitle($this->translator('Libra CMS')) ?>
+    <?php echo $this->headTitle('Libra CMS') ?>
 
     <?php echo $this->headMeta()->appendName('viewport', 'width=device-width, initial-scale=1.0') ?>
 
@@ -49,12 +50,12 @@ echo $this->doctype();
       <header class="row">
         <div class="span12 header">
           <div id="head-top">
-            <?php echo $this->translator('') ?>
+            <?php echo '' ?>
           </div>
           <div style="text-align: center; padding: 0 25px;">
-            <a id="brand-name" href="<?php echo $this->url('home') ?>"><?php echo $this->translator('♎ Libra CMS') ?></a>
+            <a id="brand-name" href="<?php echo $this->url('home') ?>"><?php printf('♎ Libra CMS') ?></a>
           </div>
-          <div id="head-bottom"><?php echo $this->translator('Free Open Source  Content Management system') ?></div>
+          <div id="head-bottom"><?php echo 'Free Open Source  Content Management system' ?></div>
           <div id="locales">
               <a href="<?php echo $this->url('default', array('controller' => 'locale', 'action' => 'switch')).'?sef=en' ?>">
                   <img src="<?php echo $basePath.$layoutPath."/images/gb.png"?>" alt="en" title="English"/>
@@ -67,7 +68,7 @@ echo $this->doctype();
                 if (null == $user) {
                     echo $this->renderChildModel('login');
                 } else { ?>
-                <a class="logout" href="<?php echo $this->url('zfcuser/logout') ?>"><?php echo $this->translator('Sign Out') ?></a>
+                <a class="logout" href="<?php echo $this->url('zfcuser/logout') ?>"><?php echo $this->translate('Sign Out') ?></a>
                 <?php } ?>
               </div>
           </div>
@@ -99,9 +100,10 @@ echo $this->doctype();
 
       <footer class="well">
         <div class="row">
-          <div class="span3" style="text-align: center"><p><?php echo $this->translator('© eJoom, 2012 - %1$d', date('Y')) ?> </p></div>
+          <div class="span3" style="text-align: center"><p><?php printf('© eJoom, 2012 - %1$d', date('Y')) ?> </p></div>
           <div class="span6">
-            <p><?php echo $this->translator('Privacy, Disclaimer, Terms & Conditions, and Copyright Info') ?></p>
+            <p><?php echo $this->translate('TRANSLATE') ?></p>
+            <p><?php echo 'Privacy, Disclaimer, Terms & Conditions, and Copyright Info' ?></p>
           </div>
           <div class="span2"><p>Based at <img src="<?php echo $layoutPath ?>/images/zf2-logo.png" /></p></div>
         </div>

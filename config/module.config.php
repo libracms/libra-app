@@ -34,8 +34,8 @@ return array(
             ),
         ),
     ),
-    'controller' => array(
-        'classes' => array(
+    'controllers' => array(
+        'invokables' => array(
             'libra-app-index' => 'LibraApp\Controller\IndexController',
         ),
     ),
@@ -53,8 +53,47 @@ return array(
         'template_path_stack' => array(
             __DIR__ . '/../view',
         ),
-        'helper_map' => array(
+        'aliases' => array(
             '_' => 'Zend\View\Helper\Translator',
         ),
+        'invokables' => array(
+            /**
+             * use like
+            'baseurl' => 'Application\View\Helper\BaseUrl',
+             */
+        ),
+        'helper_map' => array(
+            '_' => 'Zend\View\Helper\Translator',
+            //'_' => 'Zend\I18n\View\Helper\Translate',
+        ),
+    ),
+
+    'translator' => array(
+        'locale' => array(
+            'en_GB',
+            //'ru_RU', //fallback language
+        ),
+        'translation_patterns' => array(
+            array(
+                'type'        => 'phparray',
+                'base_dir'    => __DIR__ . '/../locale',
+                'text_domain' => 'default',
+                'pattern'     => '%s.php',
+            ),
+        ),
+        /*'translation_files' => array(
+            array(
+                'type' => 'phparray',
+                'filename' => __DIR__ . '/../language/en_GB.php',
+                'text_domain' => 'default',
+                'locale' => 'en_GB',
+            ),
+            array(
+                'type' => 'phparray',
+                'filename' => __DIR__ . '/../language/ru_RU.php',
+                'text_domain' => 'default',
+                'locale' => 'ru_RU',
+            ),
+        ),*/
     ),
 );

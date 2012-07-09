@@ -2,7 +2,7 @@
 
 namespace LibraApp;
 
-use Zend\Mvc\ModuleRouteListener;
+//use Zend\Mvc\ModuleRouteListener;
 use Zend\Mvc\MvcEvent;
 
 class Module
@@ -33,10 +33,11 @@ class Module
      */
     public function onBootstrap(MvcEvent $e)
     {
-        $eventManager        = $e->getApplication()->getEventManager();
-        //$eventManager->attach('dispatch', array($this, 'setModuleAwareRouter'), 10000);
-        $moduleRouteListener = new ModuleRouteListener();
-        $moduleRouteListener->attach($eventManager);
+        $eventManager   = $e->getApplication()->getEventManager();
+        $eventManager->attach(MvcEvent::EVENT_ROUTE, array($this, 'setModuleAwareRouter'), 1);
+        //$moduleRouteListener = new ModuleRouteListener();
+        //$moduleRouteListener->attach($eventManager);
+        $translator   = $e->getApplication()->getServiceManager()->get('translator');
     }
 
     /**
