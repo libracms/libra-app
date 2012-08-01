@@ -49,7 +49,7 @@ return array(
                     ),
                     'defaults' => array(
                         'module'     => 'libra-app',
-                        'controller' => 'admin-index',
+                        'controller' => 'dashboard',
                         'action'     => 'index',
                     ),
                 ),
@@ -60,7 +60,7 @@ return array(
                     'route'    => '/admin',
                     'defaults' => array(
                         'module'     => 'libra-app',
-                        'controller' => 'admin-index',
+                        'controller' => 'admin-dashboard',
                         'action'     => 'index',
                     ),
                 ),
@@ -69,8 +69,8 @@ return array(
     ),
     'controllers' => array(
         'invokables' => array(
-            'libra-app/index' => 'LibraApp\Controller\IndexController',
-            'libra-app/admin-index' => 'LibraApp\Controller\AdminIndexController',
+            'libra-app/index'           => 'LibraApp\Controller\IndexController',
+            'libra-app/admin-dashboard' => 'LibraApp\Controller\AdminDashboardController',
         ),
     ),
     'view_manager' => array(
