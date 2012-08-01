@@ -49,7 +49,7 @@ class Module
         $routeMatch     = $e->getRouteMatch();
         $controllerName = $routeMatch->getParam('controller');
         $moduleName     = $routeMatch->getParam('module');
-        if ($moduleName && $controllerName) $controllerName = $moduleName . '-' . $controllerName;
+        if ($moduleName && $controllerName) $controllerName = $moduleName . '/' . $controllerName;
         $routeMatch->setParam('controller', $controllerName);
     }
 

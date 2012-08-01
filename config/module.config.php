@@ -36,7 +36,7 @@ return array(
     ),
     'controllers' => array(
         'invokables' => array(
-            'libra-app-index' => 'LibraApp\Controller\IndexController',
+            'libra-app/index' => 'LibraApp\Controller\IndexController',
         ),
     ),
     'view_manager' => array(
@@ -54,16 +54,16 @@ return array(
             __DIR__ . '/../view',
         ),
         'aliases' => array(
-            '_' => 'Zend\View\Helper\Translator',
+            //'_' => 'Zend\I18n\View\Helper\Translate',
         ),
         'invokables' => array(
             /**
              * use like
             'baseurl' => 'Application\View\Helper\BaseUrl',
              */
+            //'_' => 'Zend\I18n\View\Helper\Translate',
         ),
         'helper_map' => array(
-            '_' => 'Zend\View\Helper\Translator',
             //'_' => 'Zend\I18n\View\Helper\Translate',
         ),
     ),
