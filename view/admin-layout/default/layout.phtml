@@ -1,0 +1,117 @@
+<?php
+$user = null;
+//$this->plugin('translate')->setTranslator(new \Zend\I18n\Translator\Translator());
+
+$this->headTitle()->setSeparator(' - ')
+                  ->setAutoEscape(false);
+
+$basePath = $this->basePath();
+$layoutPath = $basePath . '/vendor/libra/libra-app/layout/default';
+$this->headLink()->appendStylesheet($basePath . '/vendor/twitterbootstrap/css/bootstrap.min.css')
+                 //->appendStylesheet($basePath . '/vendor/jquery-ui/css/flick/jquery-ui-1.8.18.custom.css')
+                 ->appendStylesheet($basePath . $layoutPath . '/css/style.css');
+
+$this->headLink(array(
+            'rel'  => 'shortcut icon',
+            'type' => 'image/vnd.microsoft.icon',
+            'href' => $basePath . '/images/favicon.ico',
+        ));
+
+// HTML5 shim, for IE6-8 support of HTML elements
+$this->headScript()
+    ->appendFile($basePath . $layoutPath . '/js/html5.js', 'text/javascript',
+        array('conditional' => 'lt IE 9',))
+    //->prependFile('https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js')
+    ->appendFile('/vendor/jquery-ui/js/jquery-1.7.1.min.js')
+    //->appendFile('/vendor/jquery-ui/js/jquery-ui-1.8.18.custom.min.js')
+    ->appendFile('/vendor/twitterbootstrap/js/bootstrap.js')
+    ;
+
+echo $this->doctype();
+?>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <?php $this->headTitle('Administration') ?>
+    <?php echo $this->headTitle('Libra CMS') ?>
+
+    <?php echo $this->headMeta()->appendName('viewport', 'width=device-width, initial-scale=1.0') ?>
+
+    <!-- Le styles -->
+    <?php echo $this->headLink() ?>
+
+    <!-- Scripts -->
+    <?php echo $this->headScript() ?>
+
+  </head>
+
+  <body>
+    <div class="container">
+      <header class="row">
+        <div class="span12 header">
+          <div id="head-top">
+            <?php echo '' ?>
+          </div>
+          <div style="text-align: center; padding: 0 25px;">
+            <a id="brand-name" href="<?php echo $this->url('home') ?>"><?php printf('♎ Libra CMS') ?></a>
+          </div>
+          <div id="head-bottom"><?php echo 'Free Open Source  Content Management system' ?></div>
+          <div id="locales">
+              <a href="<?php echo $this->url('default', array('controller' => 'locale', 'action' => 'switch')).'?sef=en' ?>">
+                  <img src="<?php echo $basePath.$layoutPath."/images/gb.png"?>" alt="en" title="English"/>
+              </a>
+              <a href="<?php echo $this->url('default', array('controller' => 'locale', 'action' => 'switch')).'?sef=ru' ?>">
+                  <img src="<?php echo $basePath.$layoutPath."/images/ru.png"?>" alt="ru" title="Русский"/>
+              </a>
+              <div id="loginform">
+                <?php
+                if (null == $user) {
+                    echo $this->renderChildModel('login');
+                } else { ?>
+                <a class="logout" href="<?php echo $this->url('zfcuser/logout') ?>"><?php echo $this->translate('Sign Out') ?></a>
+                <?php } ?>
+              </div>
+          </div>
+        </div>
+      </header>
+
+      <div class="row search-row">
+        <?php echo $this->journalSearch ?>
+      </div>
+
+      <div class="row">
+        <div class="span3">
+          <div class="well sidebar-nav">
+          <?php echo $this->navigation() ?>
+          <?php //echo $this->widget('menu') //@todo need fix?>
+          <?php //echo $this->widgetGroup('leftbar') //@todo need fix?>
+          </div>
+        </div>
+
+        <div class="span9">
+          <div class="well">
+            <!--p>
+              <?php echo $this->navigation()->breadcrumbs() ?>
+            </p-->
+            <?php echo $content ?>
+          </div>
+        </div>
+      </div>
+
+      <footer class="well">
+        <div class="row">
+          <div class="span3" style="text-align: center"><p><?php printf('© eJoom, 2012 - %1$d', date('Y')) ?> </p></div>
+          <div class="span6">
+            <p><?php echo $this->translate('TRANSLATE') ?></p>
+            <p><?php echo 'Privacy, Disclaimer, Terms & Conditions, and Copyright Info' ?></p>
+          </div>
+          <div class="span2"><p>Based at <img src="<?php echo $layoutPath ?>/images/zf2-logo.png" /></p></div>
+        </div>
+      </footer>
+      <p>Created by <a href="http://www.ejoom.com">eJoom Software</a>. All rights reserved.</p>
+
+    </div> <!-- /container -->
+  </body>
+
+</html>
