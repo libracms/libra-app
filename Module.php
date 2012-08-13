@@ -2,7 +2,7 @@
 
 namespace LibraApp;
 
-//use Zend\Mvc\ModuleRouteListener;
+use Zend\Mvc\ModuleRouteListener;
 use Zend\Mvc\MvcEvent;
 
 class Module
@@ -35,23 +35,23 @@ class Module
     {
         $e->getViewModel()->setTemplate('layout/default/layout');
         $eventManager = $e->getApplication()->getEventManager();
-        $eventManager->attach(MvcEvent::EVENT_ROUTE, array($this, 'adminDefaultRouterListener'), 1);
+        $eventManager->attach(MvcEvent::EVENT_ROUTE, array($this, 'adminRouterListener'), 1);
         $eventManager->attach(MvcEvent::EVENT_ROUTE, array($this, 'adminAppListener'), 1);
         $eventManager->attach(MvcEvent::EVENT_ROUTE, array($this, 'setModuleAwareRouter'), 1);
-        //$moduleRouteListener = new ModuleRouteListener();
-        //$moduleRouteListener->attach($eventManager);
+        $moduleRouteListener = new ModuleRouteListener();
+        $moduleRouteListener->attach($eventManager);
         $translator   = $e->getApplication()->getServiceManager()->get('translator');
     }
 
     /**
-     * add admin- prefix to route admin-default
+     * add admin- prefix to route admin-default and others admin- routers
      * @param MvcEvent $e
      */
-    public function adminDefaultRouterListener(MvcEvent $e)
+    public function adminRouterListener(MvcEvent $e)
     {
         $routeMatch     = $e->getRouteMatch();
         $controllerName = $routeMatch->getParam('controller');
-        if ($routeMatch->getMatchedRouteName() === 'admin-default'
+        if ( strpos($routeMatch->getMatchedRouteName(), 'admin-') === 0
                 && (strpos($controllerName, 'admin-') !== 0)) {
             $routeMatch->setParam('controller', 'admin-' . $controllerName);
         }

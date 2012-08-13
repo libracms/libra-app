@@ -49,7 +49,7 @@ return array(
                     ),
                     'defaults' => array(
                         'module'     => 'libra-app',
-                        'controller' => 'dashboard',
+                        'controller' => 'admin-index',
                         'action'     => 'index',
                     ),
                 ),
