@@ -26,6 +26,44 @@ class Module
         );
     }
 
+   public function getViewHelperConfig()
+    {
+        return array(
+            'aliases' => array(
+                //'_'  => 'translate',
+                //'__' => 'translatePlural',
+            ),
+            'invokables' => array(
+                //'_' => 'Zend\I18n\View\Helper\Translate',
+                //'__' => 'Zend\I18n\View\Helper\TranslatePlural',
+            ),
+        );
+    }
+
+    protected function appBootstrap($e)
+    {
+        $sm = $e->getApplication()->getServiceManager();
+        $e->getViewModel()->setTemplate('layout/default/layout');
+        $translator   = $sm->get('translator');
+        $navigation   = $sm->get('navigation');
+
+        $phpRenderer  = $sm->get('Zend\View\Renderer\PhpRenderer');
+        $helperMenu   = $phpRenderer->navigation($navigation)->findHelper('menu');
+        $helperMenu->setUlClass('nav nav-list');
+    }
+
+    protected function adminBootstrap($e)
+    {
+        $e->getViewModel()->setTemplate('admin-layout/default/layout');
+        $sm = $e->getApplication()->getServiceManager();
+        $translator   = $sm->get('translator');
+        $navigation   = $sm->get('AdminNavigation');
+
+        $phpRenderer  = $sm->get('Zend\View\Renderer\PhpRenderer');
+        $helperMenu   = $phpRenderer->navigation($navigation)->findHelper('menu');
+        $helperMenu->setUlClass('nav nav-list');
+    }
+
     /**
      * executes on boostrap
      * @param \Zend\Mvc\MvcEvent $e
@@ -33,14 +71,12 @@ class Module
      */
     public function onBootstrap(MvcEvent $e)
     {
-        $e->getViewModel()->setTemplate('layout/default/layout');
-        $eventManager = $e->getApplication()->getEventManager();
-        $eventManager->attach(MvcEvent::EVENT_ROUTE, array($this, 'adminRouterListener'), 1);
-        $eventManager->attach(MvcEvent::EVENT_ROUTE, array($this, 'adminAppListener'), 1);
-        $eventManager->attach(MvcEvent::EVENT_ROUTE, array($this, 'setModuleAwareRouter'), 1);
+        $em = $e->getApplication()->getEventManager();
+        $em->attach(MvcEvent::EVENT_ROUTE, array($this, 'adminRouterListener'), 1);
+        $em->attach(MvcEvent::EVENT_ROUTE, array($this, 'adminAppListener'), 1);
+        $em->attach(MvcEvent::EVENT_ROUTE, array($this, 'setModuleAwareRouter'), 1);
         $moduleRouteListener = new ModuleRouteListener();
-        $moduleRouteListener->attach($eventManager);
-        $translator   = $e->getApplication()->getServiceManager()->get('translator');
+        $moduleRouteListener->attach($em);
     }
 
     /**
@@ -68,9 +104,10 @@ class Module
         $controllerName = $routeMatch->getParam('controller');
         if ($routeMatch->getMatchedRouteName() !== 'admin-default'
                 && strpos($controllerName, 'admin-') !== 0) {
+            $this->appBootstrap($e);
             return;
         }
-        $e->getViewModel()->setTemplate('admin-layout/default/layout');
+        $this->adminBootstrap($e);
     }
 
     /**

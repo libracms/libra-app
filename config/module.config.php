@@ -87,19 +87,6 @@ return array(
         'template_path_stack' => array(
             __DIR__ . '/../view',
         ),
-        'aliases' => array(
-            //'_' => 'Zend\I18n\View\Helper\Translate',
-        ),
-        'invokables' => array(
-            /**
-             * use like
-            'baseurl' => 'Application\View\Helper\BaseUrl',
-             */
-            //'_' => 'Zend\I18n\View\Helper\Translate',
-        ),
-        'helper_map' => array(
-            //'_' => 'Zend\I18n\View\Helper\Translate',
-        ),
     ),
 
     'translator' => array(
@@ -129,5 +116,11 @@ return array(
                 'locale' => 'ru_RU',
             ),
         ),*/
+    ),
+
+    //avoid error set empty navigation
+    'navigation' => array(
+        'default' => array(),
+        'admin-default' => array(),
     ),
 );
