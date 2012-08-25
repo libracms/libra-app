@@ -1,6 +1,6 @@
 <?php
 $config = array(
-
+    'layoutName' => 'default',
 );
 
 return array(

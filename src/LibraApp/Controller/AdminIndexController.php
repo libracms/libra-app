@@ -26,7 +26,7 @@ class AdminIndexController extends AbstractActionController
     {
         $user = $this->zfcuserauthentication()->getIdentity();
         if (!$user) {
-            $this->layout()->setTemplate('admin-layouts/default/login-layout');
+            $this->layout()->setTemplate('layout/admin-default/login-layout');
             return $this->redirect()->toRoute('zfcuser/login');
             return $this->redirect()->toRoute('admin/libra-app/login');
         }

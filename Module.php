@@ -7,6 +7,8 @@ use Zend\Mvc\MvcEvent;
 
 class Module
 {
+    public $config;
+
     public function getConfig()
     {
         $config = include __DIR__ . '/config/module.config.php';
@@ -42,8 +44,8 @@ class Module
 
     protected function appBootstrap($e)
     {
+        $e->getViewModel()->setTemplate('layout/' . $this->config['layoutName'] . '/layout');
         $sm = $e->getApplication()->getServiceManager();
-        $e->getViewModel()->setTemplate('layout/default/layout');
         $translator   = $sm->get('translator');
         $navigation   = $sm->get('navigation');
 
@@ -54,7 +56,7 @@ class Module
 
     protected function adminBootstrap($e)
     {
-        $e->getViewModel()->setTemplate('admin-layout/default/layout');
+        $e->getViewModel()->setTemplate('layout/admin-' . $this->config['layoutName'] . '/layout');
         $sm = $e->getApplication()->getServiceManager();
         $translator   = $sm->get('translator');
         $navigation   = $sm->get('AdminNavigation');
@@ -71,6 +73,11 @@ class Module
      */
     public function onBootstrap(MvcEvent $e)
     {
+        $sm = $e->getApplication()->getServiceManager();
+        $config = $sm->get('config');
+        $this->config = $config['libra_app'];
+
+        $e->getViewModel()->setTemplate("layout/' . $this->config['layoutName'] . '/layout");
         $em = $e->getApplication()->getEventManager();
         $em->attach(MvcEvent::EVENT_ROUTE, array($this, 'adminRouterListener'), 1);
         $em->attach(MvcEvent::EVENT_ROUTE, array($this, 'adminAppListener'), 1);
