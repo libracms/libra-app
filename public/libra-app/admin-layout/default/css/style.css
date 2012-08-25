@@ -44,6 +44,11 @@ ul.toolbar {
     margin-bottom: 5px;
 }
 
+.navbar .brand {
+    font-size: 32px;
+    padding: 2px 20px;
+}
+
 
 /* Responsive Docs
 -------------------------------------------------- */

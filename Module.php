@@ -61,7 +61,7 @@ class Module
 
         $phpRenderer  = $sm->get('Zend\View\Renderer\PhpRenderer');
         $helperMenu   = $phpRenderer->navigation($navigation)->findHelper('menu');
-        $helperMenu->setUlClass('nav nav-list');
+        $helperMenu->setUlClass('nav');
     }
 
     /**
@@ -87,7 +87,7 @@ class Module
     {
         $routeMatch     = $e->getRouteMatch();
         $controllerName = $routeMatch->getParam('controller');
-        if ( strpos($routeMatch->getMatchedRouteName(), 'admin-') === 0
+        if ( strpos($routeMatch->getMatchedRouteName(), 'admin') === 0
                 && (strpos($controllerName, 'admin-') !== 0)) {
             $routeMatch->setParam('controller', 'admin-' . $controllerName);
         }
@@ -103,7 +103,7 @@ class Module
         $routeMatch     = $e->getRouteMatch();
         $controllerName = $routeMatch->getParam('controller');
         if ($routeMatch->getMatchedRouteName() !== 'admin-default'
-                && strpos($controllerName, 'admin-') !== 0) {
+                && strpos($controllerName, 'admin') !== 0) {
             $this->appBootstrap($e);
             return;
         }

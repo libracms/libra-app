@@ -35,33 +35,42 @@ return array(
                     ),
                 ),
             ),
-            'admin-default' => array(
-                'type'    => 'Zend\Mvc\Router\Http\Segment',
-                'options' => array(
-                    'route'    => '/admin[/:module[/:controller[/:action[/:param[/:param1[/:param2]]]]]]',
-                    'constraints' => array(
-                        'module'     => '[a-zA-Z][a-zA-Z0-9_-]*',
-                        'controller' => '[a-zA-Z][a-zA-Z0-9_-]*',
-                        'action'     => '[a-zA-Z][a-zA-Z0-9_-]*',
-                        'param'      => '[a-zA-Z0-9_-]*',
-                        'param1'     => '[a-zA-Z0-9_-]*',
-                        'param2'     => '[a-zA-Z0-9_-]*',
-                    ),
-                    'defaults' => array(
-                        'module'     => 'libra-app',
-                        'controller' => 'admin-index',
-                        'action'     => 'index',
-                    ),
-                ),
-            ),
-            'admin-home' => array(
-                'type' => 'Zend\Mvc\Router\Http\Literal',
+            'admin' => array(
+                'type'    => 'Zend\Mvc\Router\Http\Literal',
                 'options' => array(
                     'route'    => '/admin',
-                    'defaults' => array(
-                        'module'     => 'libra-app',
-                        'controller' => 'admin-dashboard',
-                        'action'     => 'index',
+                ),
+                'may_terminate' => true,
+                'child_routes' => array(
+                    'default' => array(
+                        'type'    => 'Zend\Mvc\Router\Http\Segment',
+                        'options' => array(
+                            'route'    => '/[:module[/:controller[/:action[/:param[/:param1[/:param2]]]]]]',
+                            'constraints' => array(
+                                'module'     => '[a-zA-Z][a-zA-Z0-9_-]*',
+                                'controller' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                                'action'     => '[a-zA-Z][a-zA-Z0-9_-]*',
+                                'param'      => '[a-zA-Z0-9_-]*',
+                                'param1'     => '[a-zA-Z0-9_-]*',
+                                'param2'     => '[a-zA-Z0-9_-]*',
+                            ),
+                            'defaults' => array(
+                                'module'     => 'libra-app',
+                                'controller' => 'index',
+                                'action'     => 'index',
+                            ),
+                        ),
+                    ),
+                    'home' => array(
+                        'type' => 'Literal',
+                        'options' => array(
+                            'route' => '/',
+                            'defaults' => array(
+                                'module'     => 'libra-app',
+                                'controller' => 'index',
+                                'action'     => 'index',
+                            ),
+                        ),
                     ),
                 ),
             ),
@@ -70,6 +79,7 @@ return array(
     'controllers' => array(
         'invokables' => array(
             'libra-app/index'           => 'LibraApp\Controller\IndexController',
+            'libra-app/admin-index'     => 'LibraApp\Controller\AdminIndexController',
             'libra-app/admin-dashboard' => 'LibraApp\Controller\AdminDashboardController',
         ),
     ),
