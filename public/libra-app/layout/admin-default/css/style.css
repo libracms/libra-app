@@ -21,11 +21,11 @@ table.centered-head > thead > tr > th {
     text-align: center;
 }
 
-#toolbar-box img {
+#toolbar .btn-toolbar {
+    margin: 0;
     float: right;
-    display: block;
 }
-
+/*
 ul.toolbar {
     list-style: none;
     float: right;
@@ -34,12 +34,7 @@ ul.toolbar {
 .toolbar li {
     float: left;
 }
-
-
-#toolbar {
-    float: right;
-}
-
+*/
 .form-horizontal .control-group {
     margin-bottom: 5px;
 }

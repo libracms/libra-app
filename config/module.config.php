@@ -7,6 +7,7 @@ return array(
         'routes' => array(
             'default' => array(
                 'type'    => 'Zend\Mvc\Router\Http\Segment',
+                'priority' => -10000,
                 'options' => array(
                     'route'    => '/[:module[/:controller[/:action[/:param[/:param1[/:param2]]]]]]',
                     'constraints' => array(
@@ -42,8 +43,22 @@ return array(
                 ),
                 'may_terminate' => true,
                 'child_routes' => array(
+                    //insert here you admin routers
+                    'home' => array(
+                        'type' => 'Literal',
+                        'options' => array(
+                            'route' => '/',
+                            'defaults' => array(
+                                'module'     => 'libra-app',
+                                'controller' => 'index',
+                                'action'     => 'index',
+                            ),
+                        ),
+                    ),
+                    //need replace with libra-app name
                     'default' => array(
                         'type'    => 'Zend\Mvc\Router\Http\Segment',
+                        'priority' => -10000,
                         'options' => array(
                             'route'    => '/[:module[/:controller[/:action[/:param[/:param1[/:param2]]]]]]',
                             'constraints' => array(
@@ -54,17 +69,6 @@ return array(
                                 'param1'     => '[a-zA-Z0-9_-]*',
                                 'param2'     => '[a-zA-Z0-9_-]*',
                             ),
-                            'defaults' => array(
-                                'module'     => 'libra-app',
-                                'controller' => 'index',
-                                'action'     => 'index',
-                            ),
-                        ),
-                    ),
-                    'home' => array(
-                        'type' => 'Literal',
-                        'options' => array(
-                            'route' => '/',
                             'defaults' => array(
                                 'module'     => 'libra-app',
                                 'controller' => 'index',
@@ -132,5 +136,11 @@ return array(
     'navigation' => array(
         'default' => array(),
         'admin-default' => array(),
+    ),
+
+    'service_manager' => array(
+        'factories'    => array(
+            'ViewResolver' => 'Libra\Mvc\Service\ViewResolverFactory',
+        ),
     ),
 );

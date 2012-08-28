@@ -8,6 +8,7 @@ use Zend\Mvc\MvcEvent;
 class Module
 {
     public $config;
+    protected $isAdminLoaded = false;
 
     public function getConfig()
     {
@@ -42,8 +43,9 @@ class Module
         );
     }
 
-    protected function appBootstrap($e)
+    public function appBootstrap($e)
     {
+        if ($this->isAdminLoaded) return; //fix for Controller: libra-article/admin-(resolves to invalid controller class or alias: libra-article/admin-)
         $e->getViewModel()->setTemplate('layout/' . $this->config['layoutName'] . '/layout');
         $sm = $e->getApplication()->getServiceManager();
         $translator   = $sm->get('translator');
@@ -54,7 +56,7 @@ class Module
         $helperMenu->setUlClass('nav nav-list');
     }
 
-    protected function adminBootstrap($e)
+    public function adminBootstrap($e)
     {
         $e->getViewModel()->setTemplate('layout/admin-' . $this->config['layoutName'] . '/layout');
         $sm = $e->getApplication()->getServiceManager();
@@ -64,6 +66,7 @@ class Module
         $phpRenderer  = $sm->get('Zend\View\Renderer\PhpRenderer');
         $helperMenu   = $phpRenderer->navigation($navigation)->findHelper('menu');
         $helperMenu->setUlClass('nav');
+        $this->isAdminLoaded = true;
     }
 
     /**
@@ -77,11 +80,11 @@ class Module
         $config = $sm->get('config');
         $this->config = $config['libra_app'];
 
-        $e->getViewModel()->setTemplate("layout/' . $this->config['layoutName'] . '/layout");
         $em = $e->getApplication()->getEventManager();
         $em->attach(MvcEvent::EVENT_ROUTE, array($this, 'adminRouterListener'), 1);
         $em->attach(MvcEvent::EVENT_ROUTE, array($this, 'adminAppListener'), 1);
         $em->attach(MvcEvent::EVENT_ROUTE, array($this, 'setModuleAwareRouter'), 1);
+        $em->attach(MvcEvent::EVENT_DISPATCH_ERROR, array($this, 'appBootstrap'));  //configure as application at route error
         $moduleRouteListener = new ModuleRouteListener();
         $moduleRouteListener->attach($em);
     }
@@ -94,7 +97,7 @@ class Module
     {
         $routeMatch     = $e->getRouteMatch();
         $controllerName = $routeMatch->getParam('controller');
-        if ( strpos($routeMatch->getMatchedRouteName(), 'admin') === 0
+        if ( strpos($routeMatch->getMatchedRouteName(), 'admin/') === 0
                 && (strpos($controllerName, 'admin-') !== 0)) {
             $routeMatch->setParam('controller', 'admin-' . $controllerName);
         }
@@ -109,12 +112,15 @@ class Module
     {
         $routeMatch     = $e->getRouteMatch();
         $controllerName = $routeMatch->getParam('controller');
-        if ($routeMatch->getMatchedRouteName() !== 'admin-default'
-                && strpos($controllerName, 'admin') !== 0) {
-            $this->appBootstrap($e);
-            return;
+        if (strpos($routeMatch->getMatchedRouteName(), 'admin/' === 0)
+                || strpos($controllerName, 'admin-') === 0) {
+            //check permissions
+            if ($user = $e->getApplication()->getServiceManager()->get('zfcuser_auth_service')->getIdentity()) {
+                $this->adminBootstrap($e);
+                return;
+            }
         }
-        $this->adminBootstrap($e);
+        $this->appBootstrap($e);
     }
 
     /**
