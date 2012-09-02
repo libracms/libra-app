@@ -7,9 +7,10 @@ $this->headTitle()->setSeparator(' - ')
 $basePath = $this->basePath();
 $modulePath = $basePath . '/vendor/libra/libra-app';
 $layoutPath = $basePath . '/vendor/libra/libra-app/layout/admin-default';
-$this->headLink()->appendStylesheet($basePath . '/vendor/twitterbootstrap/css/bootstrap.min.css')
+$this->headLink()->appendStylesheet($basePath . '/vendor/twitter-bootstrap/css/bootstrap.css')
+                 ->appendStylesheet($basePath . '/vendor/twitter-bootstrap/css/bootstrap.responsive.css')
                  //->appendStylesheet($basePath . '/vendor/jquery-ui/css/flick/jquery-ui-1.8.18.custom.css')
-                 ->appendStylesheet($basePath . $layoutPath . '/css/style.css');
+                 ->appendStylesheet($basePath . $layoutPath . '/css/screen.css');
 
 $this->headLink(array(
             'rel'  => 'shortcut icon',
@@ -24,7 +25,7 @@ $this->headScript()
     //->prependFile('https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js')
     ->appendFile('/vendor/jquery-ui/js/jquery-1.7.1.min.js')
     //->appendFile('/vendor/jquery-ui/js/jquery-ui-1.8.18.custom.min.js')
-    ->appendFile('/vendor/twitterbootstrap/js/bootstrap.js')
+    ->appendFile('/vendor/twitter-bootstrap/js/bootstrap.js')
     ;
 
 echo $this->doctype();
@@ -59,30 +60,10 @@ echo $this->doctype();
 
           <div class="nav-collapse">
             <?php echo $this->navigation() ?>
-            <ul class="nav">
-              <li class="divider-vertical"></li>
-              <li class="dropdown">
-                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                  Configuration
-                  <b class="caret"></b>
-                </a>
-                <ul class="dropdown-menu">
-                  <li>
-                      <a href="<?php echo $this->url('default', array('controller' => 'general', 'action' => 'edit')) ?>" onclick="$('generalModal').modal()">
-                      <i class="icon-cog"></i> General
-                    </a>
-                   </li>
-                  <li>
-                    <a href="<?php echo $this->url('default', array('controller' => 'translation', 'action' => 'index')) ?>">
-                      <i class="icon-retweet"></i> Translation
-                    </a>
-                   </li>
-                </ul>
-              </li>
-            </ul>
+            <?php echo $this->render('topmenu') ?>
             <p class="navbar-text pull-right">
               <a href="/" style="margin-right: 100px;">View Site</a>
-              <a href="<?php echo $this->url('zfcuser') ?>"><?php echo $this->translate('Hi').' '/*.$user->getDisplayName()*/ ?></a>
+              <a href="<?php echo $this->url('zfcuser') ?>"><?php echo sprintf($this->translate('Hi %s!'), $this->zfcUserDisplayName()) ?></a>
             </p>
           </div><!--/.nav-collapse -->
 

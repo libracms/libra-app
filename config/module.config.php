@@ -143,4 +143,11 @@ return array(
             'ViewResolver' => 'Libra\Mvc\Service\ViewResolverFactory',
         ),
     ),
+
+    //default values
+    'libra_app' => array(
+        'layoutName' => 'default',
+        'adminLayoutName' => 'default',
+    ),
+
 );

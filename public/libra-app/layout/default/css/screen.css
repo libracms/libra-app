@@ -1,0 +1,20 @@
+/* 
+    Document   : screen
+    Created on : 02-Sep-2012, 10:53:47
+    Author     : duke
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+
+body {
+    background: url("../images/grid-18px-masked.png") repeat-x 0 190px;
+}
+
+.nav li + li span.nav-header {
+    margin-top: 9px;
+}
+
+.sidebar-nav .nav.nav-list + .nav.nav-list {
+    margin-top: 9px;
+}

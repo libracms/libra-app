@@ -12,10 +12,7 @@ class Module
 
     public function getConfig()
     {
-        $config = include __DIR__ . '/config/module.config.php';
-        $config['di']['instance'] = include __DIR__ . '/config/di.php';
-        $config = array_merge_recursive($config, include __DIR__ . '/config/libra-app.php');
-        return $config;
+        return include __DIR__ . '/config/module.config.php';
     }
 
     public function getAutoloaderConfig()
@@ -49,16 +46,21 @@ class Module
         $e->getViewModel()->setTemplate('layout/' . $this->config['layoutName'] . '/layout');
         $sm = $e->getApplication()->getServiceManager();
         $translator   = $sm->get('translator');
-        $navigation   = $sm->get('navigation');
 
+        //Fix of set correct sl for menu helper
         $phpRenderer  = $sm->get('Zend\View\Renderer\PhpRenderer');
-        $helperMenu   = $phpRenderer->navigation($navigation)->findHelper('menu');
-        $helperMenu->setUlClass('nav nav-list');
+        $helper = $phpRenderer->navigation('navigation')->findHelper('menu');
+        $helper->setServiceLocator($sm);
+
+        //$navigation   = $sm->get('navigation');
+        //$phpRenderer  = $sm->get('Zend\View\Renderer\PhpRenderer');
+        //$helperMenu   = $phpRenderer->navigation($navigation)->findHelper('menu');
+        //$helperMenu->setUlClass('nav nav-list');
     }
 
     public function adminBootstrap($e)
     {
-        $e->getViewModel()->setTemplate('layout/admin-' . $this->config['layoutName'] . '/layout');
+        $e->getViewModel()->setTemplate('layout/admin-' . $this->config['adminLayoutName'] . '/layout');
         $sm = $e->getApplication()->getServiceManager();
         $translator   = $sm->get('translator');
         $navigation   = $sm->get('AdminNavigation');
