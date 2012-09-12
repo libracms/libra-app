@@ -6,9 +6,9 @@
     "keywords":     ["zf", "zf2", "zendframework", "cms", "libra"],
     "homepage":     "http://www.libra-cms.ejoom.com",
     "time":         "2012-05-16",
-    "licence":      "BSD-3-Clause",
+    "license":      "BSD-3-Clause",
     "authors": [
-        {"name": "duke", "email": "duke@ejoom.com", "role": "maintainer, developer", "homepage": "http://www.ejoom.com"}
+        {"name": "Vitalii Nagara", "email": "duke@ejoom.com", "role": "maintainer, developer", "homepage": ""}
     ],
 
     "require": {
