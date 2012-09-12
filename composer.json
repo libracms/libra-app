@@ -13,7 +13,7 @@
 
     "require": {
         "php":          ">=5.3.3",
-        "libra/libra":  "*"
+        "libra/libra":  "dev-default"
     },
 
     "require-dev": {
@@ -29,8 +29,8 @@
       
     },
 
-    "sugest": {
-
+    "suggest": {
+        "libra/libra-article": "Add main CMS functionality"
     }
 
 }
