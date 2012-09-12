@@ -21,27 +21,31 @@ table.centered-head > thead > tr > th {
     text-align: center;
 }
 
-#toolbar .btn-toolbar {
-    margin: 0;
-    float: right;
-}
-/*
-ul.toolbar {
-    list-style: none;
-    float: right;
-}
-
-.toolbar li {
-    float: left;
-}
-*/
 .form-horizontal .control-group {
     margin-bottom: 5px;
 }
 
-.navbar .brand {
-    font-size: 32px;
-    padding: 2px 20px;
+
+
+.sidebar-nav {
+    padding: 9px 0;
+}
+
+body {
+    padding-top: 40px;
+}
+
+.navbar-fixed-top {
+    margin-bottom: 0;
+}
+
+header .well {
+    margin-top: 5px;
+    padding: 5px;
+}
+
+header h1 {
+    margin: 5px 0px;
 }
 
 

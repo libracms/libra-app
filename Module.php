@@ -116,11 +116,20 @@ class Module
         $controllerName = $routeMatch->getParam('controller');
         if (strpos($routeMatch->getMatchedRouteName(), 'admin/' === 0)
                 || strpos($controllerName, 'admin-') === 0) {
-            //check permissions
-            if ($user = $e->getApplication()->getServiceManager()->get('zfcuser_auth_service')->getIdentity()) {
-                $this->adminBootstrap($e);
-                return;
+            //check permissions and do redirect to login logaction
+            if (!$user = $e->getApplication()->getServiceManager()->get('zfcuser_auth_service')->getIdentity()) {
+                $_SESSION['tried_url'] = $_SERVER['REQUEST_URI'];
+                $flashMessenger = new \Zend\Mvc\Controller\Plugin\FlashMessenger();
+                $flashMessenger->setNamespace('zfcuser-login-form')->addMessage('Restricted area. You should login first');
+                $router = $e->getRouter();
+                $url = $router->assemble(array(), array('name' => 'zfcuser/login'));
+                $response = $e->getResponse();
+                $response->getHeaders()->addHeaderLine('Location', $url);
+                $response->setStatusCode(302);
+                return $response;
             }
+            $this->adminBootstrap($e);
+            return;
         }
         $this->appBootstrap($e);
     }

@@ -15,7 +15,7 @@ use Zend\View\Exception;
 use Zend\View\Helper\Navigation\Menu;
 
 /**
- * Description of AdminMenu
+ * Menu with dropdowns for administration layout
  *
  * @author duke
  */

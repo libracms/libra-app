@@ -1,9 +1,6 @@
 <?php
 return array(
     'router' => array(
-        'default_params' => array(
-            'locale' => 'en_GB',
-        ),
         'routes' => array(
             'default' => array(
                 'type'    => 'Zend\Mvc\Router\Http\Segment',
@@ -29,6 +26,7 @@ return array(
                 'type' => 'Zend\Mvc\Router\Http\Literal',
                 'options' => array(
                     'route'    => '/',
+                    'locale_aware' => true,
                     'defaults' => array(
                         'module'     => 'libra-app',
                         'controller' => 'index',
@@ -41,7 +39,7 @@ return array(
                 'options' => array(
                     'route'    => '/admin',
                 ),
-                'may_terminate' => true,
+                'may_terminate' => false,
                 'child_routes' => array(
                     //insert here you admin routers
                     'home' => array(
@@ -82,7 +80,8 @@ return array(
     ),
     'controllers' => array(
         'invokables' => array(
-            'libra-app/index'           => 'LibraApp\Controller\IndexController',
+            'libra-app/index'       => 'LibraApp\Controller\IndexController',
+            'libra-app/locale'      => 'LibraApp\Controller\LocaleController',
             'libra-app/admin-index'     => 'LibraApp\Controller\AdminIndexController',
             'libra-app/admin-dashboard' => 'LibraApp\Controller\AdminDashboardController',
         ),
@@ -105,10 +104,10 @@ return array(
 
     'translator' => array(
         'locale' => array(
-            'en_GB',
-            //'ru_RU', //fallback language
+            'en-US',
+            //'ru-RU', //fallback language
         ),
-        'translation_patterns' => array(
+        'translation_file_patterns' => array(
             array(
                 'type'        => 'phparray',
                 'base_dir'    => __DIR__ . '/../locale',

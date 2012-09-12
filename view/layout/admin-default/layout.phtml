@@ -1,6 +1,4 @@
 <?php
-$user = null;
-
 $this->headTitle()->setSeparator(' - ')
                   ->setAutoEscape(false);
 
@@ -8,7 +6,7 @@ $basePath = $this->basePath();
 $modulePath = $basePath . '/vendor/libra/libra-app';
 $layoutPath = $basePath . '/vendor/libra/libra-app/layout/admin-default';
 $this->headLink()->appendStylesheet($basePath . '/vendor/twitter-bootstrap/css/bootstrap.css')
-                 ->appendStylesheet($basePath . '/vendor/twitter-bootstrap/css/bootstrap.responsive.css')
+                 ->appendStylesheet($basePath . '/vendor/twitter-bootstrap/css/bootstrap-responsive.css')
                  //->appendStylesheet($basePath . '/vendor/jquery-ui/css/flick/jquery-ui-1.8.18.custom.css')
                  ->appendStylesheet($basePath . $layoutPath . '/css/screen.css');
 
@@ -18,10 +16,10 @@ $this->headLink(array(
             'href' => $modulePath . '/images/favicon.ico',
         ));
 
-// HTML5 shim, for IE6-8 support of HTML elements
 $this->headScript()
-    ->appendFile($basePath . $modulePath . '/js/html5.js', 'text/javascript',
-        array('conditional' => 'lt IE 9',))
+    // HTML5 shim, for IE6-8 support of HTML elements
+    //->appendFile($basePath . $modulePath . '/js/html5.js', null, array('conditional' => 'lt IE 9',))
+    ->appendFile('src="http://html5shim.googlecode.com/svn/trunk/html5.js', null, array('conditional' => 'lt IE 9',))
     //->prependFile('https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js')
     ->appendFile('/vendor/jquery-ui/js/jquery-1.7.1.min.js')
     //->appendFile('/vendor/jquery-ui/js/jquery-ui-1.8.18.custom.min.js')
@@ -48,7 +46,8 @@ echo $this->doctype();
   </head>
 
   <body>
-    <div class="navbar navbar-fixed-top">
+
+    <div class="navbar navbar-fixed-top navbar-inverse">
       <div class="navbar-inner">
         <div class="container-fluid">
           <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
@@ -56,27 +55,30 @@ echo $this->doctype();
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </a>
-            <a class="brand" href="<?php echo $this->url('admin/home') ?>">♎</a>
-
-          <div class="nav-collapse">
+          <a class="brand" href="http://libra-cms.ejoom.com"><span>♎</span></a>
+          <div class="nav-collapse collapse">
+            <p class="navbar-text pull-right">
+              <a href="/" target="_blank" style="margin-right: 20px;"><?php echo $this->translate('View Site') ?></a>
+              <span>Signed in as <a href="<?php echo $this->url('zfcuser') ?>"><?php echo $this->zfcUserDisplayName() ?></a></span>
+            </p>
             <?php echo $this->navigation() ?>
             <?php echo $this->render('topmenu') ?>
-            <p class="navbar-text pull-right">
-              <a href="/" style="margin-right: 100px;">View Site</a>
-              <a href="<?php echo $this->url('zfcuser') ?>"><?php echo sprintf($this->translate('Hi %s!'), $this->zfcUserDisplayName()) ?></a>
-            </p>
           </div><!--/.nav-collapse -->
-
-        </div>
+        </div><!--/.fluid-container-->
       </div>
     </div>
 
+    <header style="min-height: 20px;">
+      <div class="container-fluid">
+        <div class="row-fluid">
+          <?php echo $this->header ?>
+        </div>
+      </div>
+    </header>
+
     <div class="container-fluid">
-      <div class="row-fluid">
-        <div class="span12">
-          <?php echo $this->content ?>
-        </div><!--/span-->
-      </div><!--/row-->
+
+      <?php echo $this->content ?>
 
       <hr>
 
