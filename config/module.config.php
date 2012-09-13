@@ -81,7 +81,6 @@ return array(
     'controllers' => array(
         'invokables' => array(
             'libra-app/index'       => 'LibraApp\Controller\IndexController',
-            'libra-app/locale'      => 'LibraApp\Controller\LocaleController',
             'libra-app/admin-index'     => 'LibraApp\Controller\AdminIndexController',
             'libra-app/admin-dashboard' => 'LibraApp\Controller\AdminDashboardController',
         ),
