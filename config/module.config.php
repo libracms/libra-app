@@ -26,7 +26,6 @@ return array(
                 'type' => 'Zend\Mvc\Router\Http\Literal',
                 'options' => array(
                     'route'    => '/',
-                    'locale_aware' => true,
                     'defaults' => array(
                         'module'     => 'libra-app',
                         'controller' => 'index',
