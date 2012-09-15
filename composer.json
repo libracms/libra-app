@@ -12,9 +12,10 @@
     ],
 
     "require": {
-        "php":          ">=5.3.3",
-        "libra/libra":  "dev-default",
-        "libra/twitter-bootstrap-assets":  "dev-default"
+        "php":                              ">=5.3.3",
+        "libra/libra":                      "dev-default",
+        "libra/jquery-assets":              "dev-default",
+        "libra/twitter-bootstrap-assets":   "dev-default"
     },
 
     "require-dev": {
