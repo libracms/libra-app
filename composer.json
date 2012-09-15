@@ -13,7 +13,8 @@
 
     "require": {
         "php":          ">=5.3.3",
-        "libra/libra":  "dev-default"
+        "libra/libra":  "dev-default",
+        "libra/twitter-bootstrap-assets":  "dev-default"
     },
 
     "require-dev": {

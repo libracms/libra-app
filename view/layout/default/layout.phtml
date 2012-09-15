@@ -8,8 +8,8 @@ $this->headTitle()->setSeparator(' - ')
 $basePath = $this->basePath();
 $modulePath = $basePath . '/vendor/libra/libra-app';
 $layoutPath = $basePath . '/vendor/libra/libra-app/layout/default';
-$this->headLink()->appendStylesheet($basePath . '/vendor/twitter-bootstrap/css/bootstrap.css')
-                 ->appendStylesheet($basePath . '/vendor/twitter-bootstrap/css/bootstrap-responsive.css')
+$this->headLink()->appendStylesheet($basePath . '/vendor/libra/twitter-bootstrap-assets/css/bootstrap.css')
+                 ->appendStylesheet($basePath . '/vendor/libra/twitter-bootstrap-assets/css/bootstrap-responsive.css')
                  //->appendStylesheet($basePath . '/vendor/jquery-ui/css/flick/jquery-ui-1.8.18.custom.css')
                  ->appendStylesheet($basePath . $layoutPath . '/css/style.css')  //@TODO need delete
                  ->appendStylesheet($basePath . $layoutPath . '/css/screen.css');
@@ -27,7 +27,7 @@ $this->headScript()
     //->prependFile('https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js')
     ->appendFile('/vendor/jquery-ui/js/jquery-1.7.1.min.js')
     //->appendFile('/vendor/jquery-ui/js/jquery-ui-1.8.18.custom.min.js')
-    ->appendFile('/vendor/twitter-bootstrap/js/bootstrap.js')
+    ->appendFile('/vendor/libra/twitter-bootstrap-assets/js/bootstrap.js')
     ;
 
     $this->inlineScript()->appendScript('')
