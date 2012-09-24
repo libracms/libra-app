@@ -63,7 +63,7 @@ echo $this->doctype();
             <a id="brand-name" href="<?php echo $this->url('home') ?>"><?php printf('♎ Libra CMS') ?></a>
           </div>
           <div id="head-bottom"><?php echo 'Free Open Source  Content Management system' ?></div>
-          <?php if (class_exists('LibraLocale\\Module')): ?>
+          <?php if (LibraModuleManager\Module::isModulePresent('LibraLocale')): ?>
           <div id="locales">
               <a href="<?php echo $this->url('libra-locale/switch/query', array('to' => 'en')) ?>">
                   <img src="<?php echo $basePath.$layoutPath."/images/gb.png"?>" alt="en" title="English"/>

@@ -13,7 +13,9 @@
 
     "require": {
         "php":                              ">=5.3.3",
+        "libra/libra-assets-installer":     "dev-default",
         "libra/libra":                      "dev-default",
+        "libra/libra-module-manager":       "dev-default",
         "libra/jquery-assets":              "dev-default",
         "libra/twitter-bootstrap-assets":   "dev-default"
     },
