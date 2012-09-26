@@ -18,3 +18,13 @@ body {
 .sidebar-nav .nav.nav-list + .nav.nav-list {
     margin-top: 9px;
 }
+
+.well .page-header {
+    margin: 0 0 30px;
+    padding: 0;
+    border-bottom: 1px solid #CCCCCC;
+}
+
+.well .page-header h1 {
+    margin: 10px 0;
+}
