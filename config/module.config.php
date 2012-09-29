@@ -102,7 +102,7 @@ return array(
 
     'translator' => array(
         'locale' => array(
-            'en_US',
+            'en-US',
             //'ru-RU', //fallback language
         ),
         'translation_file_patterns' => array(
