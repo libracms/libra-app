@@ -138,6 +138,8 @@ return array(
     'service_manager' => array(
         'factories'    => array(
             'ViewResolver' => 'Libra\Mvc\Service\ViewResolverFactory',
+            //'Zend\Config\Reader\Yaml' => 'LibraApp\Service\YamlReaderFactory',
+            //'Zend\Config\Writer\Yaml' => 'LibraApp\Service\YamlWriterFactory',
         ),
     ),
 

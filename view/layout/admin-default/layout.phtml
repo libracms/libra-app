@@ -8,6 +8,7 @@ $layoutPath = $basePath . '/vendor/libra/libra-app/layout/admin-default';
 $this->headLink()->appendStylesheet($basePath . '/vendor/libra/twitter-bootstrap-assets/css/bootstrap.css')
                  ->appendStylesheet($basePath . '/vendor/libra/twitter-bootstrap-assets/css/bootstrap-responsive.css')
                  //->appendStylesheet($basePath . '/vendor/jquery-ui/css/flick/jquery-ui-1.8.18.custom.css')
+                 ->appendStylesheet($basePath . '/vendor/libra/fancybox-assets/source/jquery.fancybox.css')
                  ->appendStylesheet($basePath . $layoutPath . '/css/screen.css');
 
 $this->headLink(array(
@@ -19,12 +20,13 @@ $this->headLink(array(
 $this->headScript()
     // HTML5 shim, for IE6-8 support of HTML elements
     //->appendFile($basePath . $modulePath . '/js/html5.js', null, array('conditional' => 'lt IE 9',))
-    ->appendFile('src="http://html5shim.googlecode.com/svn/trunk/html5.js', null, array('conditional' => 'lt IE 9',))
+    ->appendFile('http://html5shim.googlecode.com/svn/trunk/html5.js', null, array('conditional' => 'lt IE 9',))
     //->prependFile('https://ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js')
     //->appendFile('/vendor/jquery-ui/js/jquery-1.7.1.min.js')
-    ->appendFile('/vendor/libra/jquery-assets/js/jquery-1.8.1.min.js')
+    ->prependFile($basePath. '/vendor/libra/jquery-assets/js/jquery-1.8.1.min.js')
     //->appendFile('/vendor/jquery-ui/js/jquery-ui-1.8.18.custom.min.js')
-    ->appendFile('/vendor/libra/twitter-bootstrap-assets/js/bootstrap.js')
+    ->appendFile($basePath . '/vendor/libra/twitter-bootstrap-assets/js/bootstrap.js')
+    ->appendFile($basePath . '/vendor/libra/fancybox-assets/source/jquery.fancybox.js')
     ;
 
 echo $this->doctype();
@@ -59,7 +61,7 @@ echo $this->doctype();
           <a class="brand" href="http://libra-cms.ejoom.com"><span>♎</span></a>
           <div class="nav-collapse collapse">
             <p class="navbar-text pull-right">
-              <a href="/" target="_blank" style="margin-right: 20px;"><?php echo $this->translate('View Site') ?></a>
+              <a href="<?php echo $basePath ?>/" target="_blank" style="margin-right: 20px;"><?php echo $this->translate('View Site') ?></a>
               <span>Signed in as <a href="<?php echo $this->url('zfcuser') ?>"><?php echo $this->zfcUserDisplayName() ?></a></span>
             </p>
             <?php echo $this->navigation() ?>
