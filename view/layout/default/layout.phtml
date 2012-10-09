@@ -12,8 +12,8 @@ $this->headLink()->appendStylesheet($basePath . '/vendor/libra/twitter-bootstrap
                  ->appendStylesheet($basePath . '/vendor/libra/twitter-bootstrap-assets/css/bootstrap-responsive.css')
                  //->appendStylesheet($basePath . '/vendor/jquery-ui/css/flick/jquery-ui-1.8.18.custom.css')
                  ->appendStylesheet($basePath . '/vendor/libra/fancybox-assets/source/jquery.fancybox.css')
-                 ->appendStylesheet($basePath . $layoutPath . '/css/style.css')  //@TODO need delete
-                 ->appendStylesheet($basePath . $layoutPath . '/css/screen.css');
+                 ->appendStylesheet($layoutPath . '/css/style.css')  //@TODO need delete
+                 ->appendStylesheet($layoutPath . '/css/screen.css');
 
 $this->headLink(array(
             'rel'  => 'shortcut icon',
@@ -23,7 +23,7 @@ $this->headLink(array(
 
 // HTML5 shim, for IE6-8 support of HTML elements
 $this->headScript()
-    ->appendFile($basePath . $layoutPath . '/js/html5.js', 'text/javascript',
+    ->appendFile($layoutPath . '/js/html5.js', 'text/javascript',
         array('conditional' => 'lt IE 9',))
     //->prependFile('https://ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js')
     //->appendFile('/vendor/jquery-ui/js/jquery-1.7.1.min.js')
@@ -64,10 +64,10 @@ echo $this->doctype();
           <?php if (LibraModuleManager\Module::isModulePresent('LibraLocale')): ?>
           <div id="locales">
               <a href="<?php echo $this->url('libra-locale/switch/query', array('to' => 'en')) ?>">
-                  <img src="<?php echo $basePath.$layoutPath."/images/gb.png"?>" alt="en" title="English"/>
+                  <img src="<?php echo $layoutPath."/images/gb.png"?>" alt="en" title="English"/>
               </a>
               <a href="<?php echo $this->url('libra-locale/switch/query', array('to' => 'ru')) ?>">
-                  <img src="<?php echo $basePath.$layoutPath."/images/ru.png"?>" alt="ru" title="Русский"/>
+                  <img src="<?php echo $layoutPath."/images/ru.png"?>" alt="ru" title="Русский"/>
               </a>
               <div id="loginform">
                 <?php
