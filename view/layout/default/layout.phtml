@@ -63,10 +63,10 @@ echo $this->doctype();
           <div id="head-bottom"><?php echo 'Free Open Source  Content Management system' ?></div>
           <?php if (LibraModuleManager\Module::isModulePresent('LibraLocale')): ?>
           <div id="locales">
-              <a href="<?php echo $this->url('libra-locale/switch/query', array('to' => 'en')) ?>">
+              <a href="<?php echo $this->url('libra-locale/switch', array(), array('query' => array('to' => 'en'))) ?>">
                   <img src="<?php echo $layoutPath."/images/gb.png"?>" alt="en" title="English"/>
               </a>
-              <a href="<?php echo $this->url('libra-locale/switch/query', array('to' => 'ru')) ?>">
+              <a href="<?php echo $this->url('libra-locale/switch', array(), array('query' => array('to' => 'ru'))) ?>">
                   <img src="<?php echo $layoutPath."/images/ru.png"?>" alt="ru" title="Русский"/>
               </a>
               <div id="loginform">
