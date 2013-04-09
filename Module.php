@@ -99,8 +99,8 @@ class Module
     {
         $routeMatch     = $e->getRouteMatch();
         $controllerName = $routeMatch->getParam('controller');
-        if ( strpos($routeMatch->getMatchedRouteName(), 'admin/') === 0
-                && (strpos($controllerName, 'admin-') !== 0)) {
+        if (strpos($routeMatch->getMatchedRouteName(), 'admin/') === 0
+                && (stripos($controllerName, 'admin') !== 0)) {
             $routeMatch->setParam('controller', 'admin-' . $controllerName);
         }
     }
@@ -115,7 +115,7 @@ class Module
         $routeMatch     = $e->getRouteMatch();
         $controllerName = $routeMatch->getParam('controller');
         if (strpos($routeMatch->getMatchedRouteName(), 'admin/' === 0)
-                || strpos($controllerName, 'admin-') === 0) {
+                || stripos($controllerName, 'admin') === 0) {
             //check permissions and do redirect to login logaction
             if (!$user = $e->getApplication()->getServiceManager()->get('zfcuser_auth_service')->getIdentity()) {
                 $_SESSION['tried_url'] = $_SERVER['REQUEST_URI'];
