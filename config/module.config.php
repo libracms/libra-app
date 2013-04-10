@@ -4,7 +4,7 @@ return array(
         'routes' => array(
             'default' => array(
                 'type'    => 'Zend\Mvc\Router\Http\Segment',
-                'priority' => -10000,
+                'priority' => -1000,
                 'options' => array(
                     'route'    => '/[:module[/:controller[/:action[/:param[/:param1[/:param2]]]]]]',
                     'constraints' => array(
@@ -55,7 +55,7 @@ return array(
                     //need replace with libra-app name
                     'default' => array(
                         'type'    => 'Zend\Mvc\Router\Http\Segment',
-                        'priority' => -10000,
+                        'priority' => -1000,
                         'options' => array(
                             'route'    => '/[:module[/:controller[/:action[/:param[/:param1[/:param2]]]]]]',
                             'constraints' => array(
