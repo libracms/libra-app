@@ -2,6 +2,7 @@
 
 namespace LibraApp;
 
+use Zend\Console\Console;
 use Zend\Mvc\ModuleRouteListener;
 use Zend\Mvc\MvcEvent;
 
@@ -83,10 +84,12 @@ class Module
         $this->config = $config['libra_app'];
 
         $em = $e->getApplication()->getEventManager();
-        $em->attach(MvcEvent::EVENT_ROUTE, array($this, 'adminRouterListener'), 1);
-        $em->attach(MvcEvent::EVENT_ROUTE, array($this, 'adminAppListener'), 1);
+        if (!Console::isConsole()) {
+            $em->attach(MvcEvent::EVENT_ROUTE, array($this, 'adminRouterListener'), 1);
+            $em->attach(MvcEvent::EVENT_ROUTE, array($this, 'adminAppListener'), 1);
+            $em->attach(MvcEvent::EVENT_DISPATCH_ERROR, array($this, 'appBootstrap'));  //configure as application at route error
+        }
         $em->attach(MvcEvent::EVENT_ROUTE, array($this, 'setModuleAwareRouter'), 1);
-        $em->attach(MvcEvent::EVENT_DISPATCH_ERROR, array($this, 'appBootstrap'));  //configure as application at route error
         $moduleRouteListener = new ModuleRouteListener();
         $moduleRouteListener->attach($em);
     }
@@ -129,9 +132,10 @@ class Module
                 return $response;
             }
             $this->adminBootstrap($e);
-            return;
+        } else {
+            $this->appBootstrap($e);
         }
-        $this->appBootstrap($e);
+        return;
     }
 
     /**
