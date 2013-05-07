@@ -1,0 +1,30 @@
+/* 
+    Document   : form-actions-screen
+    Created on : Apr 18, 2013, 4:59:23 PM
+    Author     : duke
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+.entity-actions {
+    position: relative;
+}
+
+.entity-actions-group {
+    display: none;
+    position: absolute;
+    width: 56px;
+    left: -20px;
+}
+
+.entity-actions-group a {
+    border: outset 1px gray;
+}
+
+.entity-actions-group a:hover {
+    border: inset 1px gray;
+}
+
+.entity-actions-enter:hover {
+    cursor: pointer;
+}

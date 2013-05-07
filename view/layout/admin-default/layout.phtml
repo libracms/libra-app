@@ -9,7 +9,9 @@ $this->headLink()->appendStylesheet($basePath . '/vendor/libra/twitter-bootstrap
                  ->appendStylesheet($basePath . '/vendor/libra/twitter-bootstrap-assets/css/bootstrap-responsive.css')
                  //->appendStylesheet($basePath . '/vendor/jquery-ui/css/flick/jquery-ui-1.8.18.custom.css')
                  ->appendStylesheet($basePath . '/vendor/libra/fancybox-assets/source/jquery.fancybox.css')
-                 ->appendStylesheet($layoutPath . '/css/screen.css');
+                 ->appendStylesheet($layoutPath . '/css/screen.css')
+                 ->appendStylesheet($modulePath . '/css/form-actions-screen.css')
+        ;
 
 $this->headLink(array(
             'rel'  => 'shortcut icon',
@@ -27,6 +29,7 @@ $this->headScript()
     //->appendFile('/vendor/jquery-ui/js/jquery-ui-1.8.18.custom.min.js')
     ->appendFile($basePath . '/vendor/libra/twitter-bootstrap-assets/js/bootstrap.js')
     ->appendFile($basePath . '/vendor/libra/fancybox-assets/source/jquery.fancybox.js')
+    ->appendFile($modulePath . '/js/form-actions.js')
     ;
 
 echo $this->doctype();
