@@ -46,7 +46,7 @@ class Module
         if ($this->isAdminLoaded) return; //fix for Controller: libra-article/admin-(resolves to invalid controller class or alias: libra-article/admin-)
         $e->getViewModel()->setTemplate('layout/' . $this->config['layoutName'] . '/layout');
         $sm = $e->getApplication()->getServiceManager();
-        $translator   = $sm->get('translator');
+        //$translator   = $sm->get('translator');
 
         //Fix of set correct sl for menu helper
         $phpRenderer  = $sm->get('Zend\View\Renderer\PhpRenderer');
@@ -63,7 +63,7 @@ class Module
     {
         $e->getViewModel()->setTemplate('layout/admin-' . $this->config['adminLayoutName'] . '/layout');
         $sm = $e->getApplication()->getServiceManager();
-        $translator   = $sm->get('translator');
+        //$translator   = $sm->get('translator');
         $navigation   = $sm->get('AdminNavigation');
 
         $phpRenderer  = $sm->get('Zend\View\Renderer\PhpRenderer');

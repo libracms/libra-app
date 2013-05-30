@@ -141,6 +141,13 @@ return array(
             //'Zend\Config\Reader\Yaml' => 'LibraApp\Service\YamlReaderFactory',
             //'Zend\Config\Writer\Yaml' => 'LibraApp\Service\YamlWriterFactory',
         ),
+        'abstract_factories' => array(
+            'Zend\Cache\Service\StorageCacheAbstractServiceFactory',
+            'Zend\Log\LoggerAbstractServiceFactory',
+        ),
+        'aliases' => array(
+            'translator' => 'MvcTranslator',
+        ),
     ),
 
     //default values
