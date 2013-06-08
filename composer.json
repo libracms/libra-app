@@ -12,12 +12,12 @@
 
     "require": {
         "php":                              ">=5.3.3",
-        "libra/libra-assets-installer":     "dev-default",
-        "libra/libra":                      "dev-default",
-        "libra/libra-module-manager":       "dev-default",
-        "libra/jquery-assets":              "dev-default",
-        "libra/twitter-bootstrap-assets":   "dev-default",
-        "libra/fancybox-assets":            "dev-default"
+        "libra/libra-assets-installer":     "~1.0.0",
+        "libra/libra":                      "dev-master",
+        "libra/libra-module-manager":       "dev-master",
+        "libra/jquery-assets":              "~1.10",
+        "libra/twitter-bootstrap-assets":   "~2.3.2",
+        "libra/fancybox-assets":            "~2.1.0"
     },
 
     "require-dev": {
