@@ -11,7 +11,7 @@
 
     "require": {
         "php":                              ">=5.3.3",
-        "libra/libra-assets-installer":     "~1.0.0",
+        "libra/libra-assets-installer":     "dev-master",
         "libra/libra":                      "dev-master",
         "libra/libra-module-manager":       "dev-master"
     },
