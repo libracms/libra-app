@@ -3,8 +3,7 @@
     "type":         "library",
     "description":  "Application module and administration for Libra CMS",
     "keywords":     ["zf", "zf2", "zendframework", "cms", "libra"],
-    "homepage":     "http://www.libra-cms.ejoom.com",
-    "time":         "2012-05-16",
+    "homepage":     "http://www.ejoom.com/libra-cms",
     "license":      "BSD-3-Clause",
     "authors": [
         {"name": "Vitalii Nagara", "email": "duke@ejoom.com", "role": "maintainer, developer", "homepage": ""}
@@ -14,10 +13,7 @@
         "php":                              ">=5.3.3",
         "libra/libra-assets-installer":     "~1.0.0",
         "libra/libra":                      "dev-master",
-        "libra/libra-module-manager":       "dev-master",
-        "libra/jquery-assets":              "~1.10",
-        "libra/twitter-bootstrap-assets":   "~2.3.2",
-        "libra/fancybox-assets":            "~2.1.0"
+        "libra/libra-module-manager":       "dev-master"
     },
 
     "require-dev": {
@@ -25,7 +21,7 @@
     },
 
     "autoload": {
-        "psr-0": {"LibraApp": "src"},
+        "psr-0": {"LibraApp\\": "src/"},
         "classmap": ["Module.php"]
     },
 
@@ -34,7 +30,11 @@
     },
 
     "suggest": {
-        "libra/libra-article": "Add main CMS functionality"
+        "libra/libra-article": "Add main CMS functionality",
+        "libra/jquery-assets": "Add jQuery if you don't specify it in another way",
+        "libra/jquery-ui-assets": "(Optional) Add jQuery UI if you don't specify it in another way",
+        "libra/twitter-bootstrap-assets": "Add fine css framework if you don't specify it in another way",
+        "libra/fancybox-assets": "Add JS sliders if you don't specify it in another way"
     }
 
 }
