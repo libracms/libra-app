@@ -1,7 +1,6 @@
 {
     "name":         "libra/libra-app",
     "type":         "library",
-    "version":      "0.2.0",
     "description":  "Application module and administration for Libra CMS",
     "keywords":     ["zf", "zf2", "zendframework", "cms", "libra"],
     "homepage":     "http://www.libra-cms.ejoom.com",
