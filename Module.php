@@ -41,7 +41,7 @@ class Module
         );
     }
 
-    public function appBootstrap($e)
+    public function appBootstrap(MvcEvent $e)
     {
         if ($this->isAdminLoaded) return; //fix for Controller: libra-article/admin-(resolves to invalid controller class or alias: libra-article/admin-)
         $e->getViewModel()->setTemplate('layout/' . $this->config['layoutName'] . '/layout');
@@ -59,7 +59,11 @@ class Module
         //$helperMenu->setUlClass('nav nav-list');
     }
 
-    public function adminBootstrap($e)
+    /**
+     * Load admin layout and configs
+     * @param \Zend\Mvc\MvcEvent $e
+     */
+    public function adminBootstrap(MvcEvent $e)
     {
         $e->getViewModel()->setTemplate('layout/admin-' . $this->config['adminLayoutName'] . '/layout');
         $sm = $e->getApplication()->getServiceManager();
@@ -100,25 +104,33 @@ class Module
      */
     public function adminRouterListener(MvcEvent $e)
     {
-        $routeMatch     = $e->getRouteMatch();
-        $controllerName = $routeMatch->getParam('controller');
-        if (strpos($routeMatch->getMatchedRouteName(), 'admin/') === 0
-                && (stripos($controllerName, 'admin') !== 0)) {
+        $routeMatch      = $e->getRouteMatch();
+        $controllerName  = $routeMatch->getParam('controller');
+        $moduleNamespace = $routeMatch->getParam(ModuleRouteListener::MODULE_NAMESPACE);
+        if (
+            strpos($routeMatch->getMatchedRouteName(), 'admin/') === 0
+            && stripos($controllerName, 'admin') !== 0
+            && stripos($controllerName, 'Controller\Admin') === false
+            && stripos($moduleNamespace, 'Controller\Admin') === false
+        ) {
             $routeMatch->setParam('controller', 'admin-' . $controllerName);
         }
     }
 
     /**
-     * Checks controller name to contain admin- prefix
-     * and add admin configurations like layout
+     * Determines if controller consists in children of admin router
+     * and if so then runs $this->adminBootstrap()
      * @param \Zend\Mvc\MvcEvent $e
      */
     public function adminAppListener(MvcEvent $e)
     {
-        $routeMatch     = $e->getRouteMatch();
-        $controllerName = $routeMatch->getParam('controller');
-        if (strpos($routeMatch->getMatchedRouteName(), 'admin/' === 0)
-                || stripos($controllerName, 'admin') === 0) {
+        $routeMatch      = $e->getRouteMatch();
+        //$controllerName  = $routeMatch->getParam('controller');
+        //$moduleNamespace = $routeMatch->getParam(ModuleRouteListener::MODULE_NAMESPACE);
+        if (strpos($routeMatch->getMatchedRouteName(), 'admin/') === 0
+            //|| stripos($controllerName, 'admin') === 0
+            //|| stripos($moduleNamespace, 'Controller\Admin') !== false //@todo clean up after ver. 0.5.0
+        ) {
             //check permissions and do redirect to login logaction
             if (!$user = $e->getApplication()->getServiceManager()->get('zfcuser_auth_service')->getIdentity()) {
                 $_SESSION['tried_url'] = $_SERVER['REQUEST_URI'];
