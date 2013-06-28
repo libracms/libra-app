@@ -65,7 +65,7 @@ class Module
      */
     public function adminBootstrap(MvcEvent $e)
     {
-        $e->getViewModel()->setTemplate('layout/admin-' . $this->config['adminLayoutName'] . '/layout');
+        $e->getViewModel()->setTemplate('layout/admin/' . $this->config['adminLayoutName'] . '/layout');
         $sm = $e->getApplication()->getServiceManager();
         //$translator   = $sm->get('translator');
         $navigation   = $sm->get('AdminNavigation');

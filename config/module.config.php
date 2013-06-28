@@ -27,8 +27,9 @@ return array(
                 'options' => array(
                     'route'    => '/',
                     'defaults' => array(
-                        'module'     => 'libra-app',
-                        'controller' => 'index',
+                        '__NAMESPACE__' => 'LibraApp\Controller',
+                        //'module'     => 'libra-app',
+                        'controller' => 'Index',
                         'action'     => 'index',
                     ),
                 ),
@@ -46,9 +47,44 @@ return array(
                         'options' => array(
                             'route' => '/',
                             'defaults' => array(
-                                'module'     => 'libra-app',
-                                'controller' => 'index',
+                                '__NAMESPACE__' => 'LibraApp\Controller\Admin',
+                                //'module'     => 'libra-app',
+                                'controller' => 'Index',
                                 'action'     => 'index',
+                            ),
+                        ),
+                    ),
+                    'libra-app' => array(
+                        'type' => 'Literal',
+                        'options' => array(
+                            'route'    => '/libra-app',
+                            'defaults' => array(
+                                '__NAMESPACE__' => 'LibraApp\Controller\Admin\Config',
+                            ),
+                        ),
+                        'child_routes' => array(
+                            'config' => array(
+                                'type' => 'Literal',
+                                'options' => array(
+                                    'route' => '/config',
+                                    'defaults' => array(
+                                    ),
+                                ),
+                                'child_routes' => array(
+                                    'general' => array(
+                                        'type' => 'Segment',
+                                        'options' => array(
+                                            'route' => '/general[/:action]',
+                                            'constraints' => array(
+                                                'action'     => '[a-zA-Z][a-zA-Z0-9_-]*',
+                                            ),
+                                            'defaults' => array(
+                                                'controller' => 'General',
+                                                'action'     => 'view',
+                                            ),
+                                        ),
+                                    ),
+                                ),
                             ),
                         ),
                     ),
@@ -79,9 +115,10 @@ return array(
     ),
     'controllers' => array(
         'invokables' => array(
-            'libra-app/index'       => 'LibraApp\Controller\IndexController',
-            'libra-app/admin-index'     => 'LibraApp\Controller\AdminIndexController',
-            'libra-app/admin-dashboard' => 'LibraApp\Controller\AdminDashboardController',
+            'LibraApp\Controller\Index'         => 'LibraApp\Controller\IndexController',
+            'LibraApp\Controller\Admin\Index'           => 'LibraApp\Controller\Admin\IndexController',
+            'LibraApp\Controller\Admin\Dashboard'       => 'LibraApp\Controller\Admin\DashboardController',
+            'LibraApp\Controller\Admin\Config\General'  => 'LibraApp\Controller\Admin\Config\GeneralController',
         ),
     ),
     'view_manager' => array(
