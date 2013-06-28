@@ -2,6 +2,8 @@
 
 namespace LibraApp\Controller\Admin\Config;
 
+use LibraApp\Form\GeneralForm;
+use Zend\Config\Exception\RuntimeException;
 use Zend\Config\Writer\PhpArray;
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
@@ -13,9 +15,11 @@ use Zend\View\Model\ViewModel;
  */
 class GeneralController extends AbstractActionController
 {
+    const PATH = 'config/config.php';
+
     protected function save($values)
     {
-        $file = '../config/config.php';
+        $file = self::PATH;
         $writer = new PhpArray();
         try {
             $writer->toFile($file, $values);
@@ -39,19 +43,17 @@ class GeneralController extends AbstractActionController
 
     public function editAction()
     {
-        if (!$this->hasPermition()) {
-            return $this->AccessDenied();
-        }
         $form = new GeneralForm();
         if ($this->getRequest()->isPost()) {
-            $post = $this->getRequest()->post()->toArray();
+            $post = $this->params()->fromPost();
+            $form->setData($post);
             if ($form->isValid($post)) {
-                $res = $this->save($form->getValues());
+                //$res = $this->save($form->getValues());
             }
         } else {
-            $file = '../config/config.php';
+            $file = self::PATH;
             $config = include $file;
-            $form->setDefaults($config);
+            $form->setData($config);
         }
 
         return new ViewModel(array(

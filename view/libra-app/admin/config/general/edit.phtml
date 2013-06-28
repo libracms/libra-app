@@ -1,0 +1,16 @@
+<?php
+$title = 'Edit General Configs';
+$this->headTitle($title);
+?>
+<h1><?= $this->translate($title) ?> </h1>
+
+<?php
+$form = $this->form;
+$form->setAttribute('action', $this->url('admin/libra-app/config/general', array('action' => 'edit')));
+$form->prepare();
+
+echo $this->form()->openTag($form);
+echo $this->formRow($form->get('datum'));
+echo $this->formSubmit($form->get('submit'));
+echo $this->form()->closeTag();
+?>
