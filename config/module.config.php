@@ -27,8 +27,8 @@ return array(
                 'options' => array(
                     'route'    => '/',
                     'defaults' => array(
-                        '__NAMESPACE__' => 'LibraApp\Controller',
-                        //'module'     => 'libra-app',
+                        //'__NAMESPACE__' => 'LibraApp\Controller',
+                        'module'     => 'libra-app',
                         'controller' => 'Index',
                         'action'     => 'index',
                     ),
@@ -114,6 +114,9 @@ return array(
         ),
     ),
     'controllers' => array(
+        'aliases' => array(
+            'libra-app/index' => 'LibraApp\Controller\Index',
+        ),
         'invokables' => array(
             'LibraApp\Controller\Index'         => 'LibraApp\Controller\IndexController',
             'LibraApp\Controller\Admin\Index'           => 'LibraApp\Controller\Admin\IndexController',

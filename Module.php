@@ -27,7 +27,7 @@ class Module
         );
     }
 
-   public function getViewHelperConfig()
+    public function getViewHelperConfig()
     {
         return array(
             'aliases' => array(

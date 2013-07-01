@@ -2,7 +2,7 @@
 
 namespace LibraApp\Controller\Admin\Config;
 
-use LibraApp\Form\GeneralForm;
+use LibraApp\Form\AdminConfigGeneralForm;
 use Zend\Config\Exception\RuntimeException;
 use Zend\Config\Writer\PhpArray;
 use Zend\Mvc\Controller\AbstractActionController;
@@ -21,6 +21,12 @@ class GeneralController extends AbstractActionController
     {
         $file = self::PATH;
         $writer = new PhpArray();
+        $values = array('config' => array(
+                'general' => array(
+                    'data' => $values))
+        );
+        $config = include $file;
+        $values = array_replace_recursive($config, $values);
         try {
             $writer->toFile($file, $values);
         } catch (RuntimeException $exc) {
@@ -43,17 +49,20 @@ class GeneralController extends AbstractActionController
 
     public function editAction()
     {
-        $form = new GeneralForm();
+        $form = new AdminConfigGeneralForm();
         if ($this->getRequest()->isPost()) {
             $post = $this->params()->fromPost();
             $form->setData($post);
             if ($form->isValid($post)) {
-                //$res = $this->save($form->getValues());
+                $data = $form->getData();
+                unset($data['csrf']);
+                unset($data['submit']);
+                $res = $this->save($data);
             }
         } else {
             $file = self::PATH;
             $config = include $file;
-            $form->setData($config);
+            $form->setData($config['config']['general']['data']);
         }
 
         return new ViewModel(array(

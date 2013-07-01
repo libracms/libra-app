@@ -9,8 +9,13 @@ $form = $this->form;
 $form->setAttribute('action', $this->url('admin/libra-app/config/general', array('action' => 'edit')));
 $form->prepare();
 
-echo $this->form()->openTag($form);
-echo $this->formRow($form->get('datum'));
-echo $this->formSubmit($form->get('submit'));
-echo $this->form()->closeTag();
+echo $this->form()->openTag($form) . PHP_EOL;
+echo $this->formRow($form->get('param0')) . PHP_EOL;
+echo $this->formRow($form->get('param1')) . PHP_EOL;
+echo $this->formRow($form->get('param2')) . PHP_EOL;
+echo $this->formRow($form->get('param3')) . PHP_EOL;
+echo $this->formRow($form->get('param4')) . PHP_EOL;
+echo $this->formRow($form->get('csrf')) . PHP_EOL;
+echo $this->formSubmit($form->get('submit')) . PHP_EOL;
+echo $this->form()->closeTag() . PHP_EOL;
 ?>
