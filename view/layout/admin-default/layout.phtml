@@ -62,13 +62,14 @@ echo $this->doctype();
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </a>
-          <a class="brand" href="http://libra-cms.ejoom.com"><span>♎</span></a>
+          <a class="brand" href="http://www.ejoom.com/libra-cms/" target="_blank"><span>♎</span></a>
           <div class="nav-collapse collapse">
             <p class="navbar-text pull-right">
               <a href="<?php echo $basePath ?>/" target="_blank" style="margin-right: 20px;"><?php echo $this->translate('View Site') ?></a>
               <span>Signed in as <a href="<?php echo $this->url('zfcuser') ?>"><?php echo $this->zfcUserDisplayName() ?></a></span>
             </p>
-            <?php echo $this->navigation() ?>
+            <?php // echo $this->navigation() ?>
+            <?php echo $this->ztbNavigation('AdminNavigation') ?>
             <?php echo $this->render('topmenu') ?>
           </div><!--/.nav-collapse -->
         </div><!--/.fluid-container-->
@@ -90,7 +91,7 @@ echo $this->doctype();
       <hr>
 
       <footer>
-        <p>&copy; 2008 - <?php echo date('Y') ?> by Ejoom Software Inc. All rights reserved.</p>
+        <p>&copy; 2008 - <?php echo date('Y') ?> by <a href="http://www.ejoom.com" target="_blank">eJoom Software</a>. All rights reserved.</p>
       </footer>
 
     </div><!--/.fluid-container-->
