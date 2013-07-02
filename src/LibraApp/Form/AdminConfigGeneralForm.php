@@ -65,6 +65,9 @@ class AdminConfigGeneralForm extends Form
         $this->add(array(
             'name' => 'submit',
             'type' => 'Submit',
+            'options'    => array(
+                'primary'    => true,
+            ),
             'attributes' => array(
                 'value' => 'Save',
                 'id' => 'submitbutton',

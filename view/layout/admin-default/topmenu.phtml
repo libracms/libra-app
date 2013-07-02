@@ -13,15 +13,27 @@
         </a>
        </li>
       <li>
-        <a href="<?php echo $this->url('default', array('controller' => 'translation', 'action' => 'index')) ?>">
+        <a href="<?php echo $this->url('admin/default', array('controller' => 'translation', 'action' => 'index')) ?>">
           <i class="icon-retweet"></i> Translation
         </a>
        </li>
     </ul>
-    <li>
-      <a href="<?php echo $this->url('admin/libra-app/index', array('action' => 'help')) ?>">
-        <i class="icon-question-sign icon-white" title="Help"></i>
-      </a>
-    </li>
+  </li>
+  <li class="dropdown">
+    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+      <i class="icon-question-sign icon-white" title="Help"></i>
+    </a>
+    <ul class="dropdown-menu">
+      <li>
+        <a href="<?php echo $this->url('admin/libra-app/index', array('action' => 'help')) ?>">
+          About Libra CMS
+        </a>
+      </li>
+      <li>
+        <a href="<?php echo $this->url('dlu_twb_demo_demo') ?>" target="_blank">
+          DluTwBootstrap Forms Demo
+        </a>
+      </li>
+    </ul>
   </li>
 </ul>

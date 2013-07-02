@@ -13,7 +13,9 @@
         "php":                              ">=5.3.3",
         "libra/libra-assets-installer":     "dev-master",
         "libra/libra":                      "dev-master",
-        "libra/libra-module-manager":       "dev-master"
+        "libra/libra-module-manager":       "dev-master",
+        "dlu/dlutwbootstrap":               "~0.1.4",
+        "dlu/dlutwbootstrapdemo":           "~0.1.2"
     },
 
     "require-dev": {
