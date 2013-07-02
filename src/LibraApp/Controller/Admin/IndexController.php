@@ -22,4 +22,8 @@ class IndexController extends AbstractAdminActionController
         //run code;
     }
 
+    public function helpAction()
+    {
+
+    }
 }

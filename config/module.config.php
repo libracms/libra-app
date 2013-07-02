@@ -59,7 +59,9 @@ return array(
                         'options' => array(
                             'route'    => '/libra-app',
                             'defaults' => array(
-                                '__NAMESPACE__' => 'LibraApp\Controller\Admin\Config',
+                                '__NAMESPACE__' => 'LibraApp\Controller\Admin',
+                                'controller' => 'Index',
+                                'action'     => 'index',
                             ),
                         ),
                         'child_routes' => array(
@@ -68,6 +70,7 @@ return array(
                                 'options' => array(
                                     'route' => '/config',
                                     'defaults' => array(
+                                        '__NAMESPACE__' => 'LibraApp\Controller\Admin\Config',
                                     ),
                                 ),
                                 'child_routes' => array(
@@ -79,10 +82,23 @@ return array(
                                                 'action'     => '[a-zA-Z][a-zA-Z0-9_-]*',
                                             ),
                                             'defaults' => array(
+                                                '__NAMESPACE__' => 'LibraApp\Controller\Admin\Config',
                                                 'controller' => 'General',
                                                 'action'     => 'view',
                                             ),
                                         ),
+                                    ),
+                                ),
+                            ),
+                            'index' => array(
+                                'type' => 'Segment',
+                                'options' => array(
+                                    'route' => '/index[/:action]',
+                                    'constraints' => array(
+                                        'action'     => '[a-zA-Z][a-zA-Z0-9_-]*',
+                                    ),
+                                    'defaults' => array(
+                                        'action'     => 'index',
                                     ),
                                 ),
                             ),
@@ -116,6 +132,7 @@ return array(
     'controllers' => array(
         'aliases' => array(
             'libra-app/index' => 'LibraApp\Controller\Index',
+            'libra-app/admin-index' => 'LibraApp\Controller\Admin\Index',
         ),
         'invokables' => array(
             'LibraApp\Controller\Index'         => 'LibraApp\Controller\IndexController',

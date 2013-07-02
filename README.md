@@ -1,4 +1,4 @@
-Libra CMS
+Libra Application
 =======================
 
 ##Tasks:

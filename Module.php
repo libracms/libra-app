@@ -8,6 +8,11 @@ use Zend\Mvc\MvcEvent;
 
 class Module
 {
+    /**
+     * root path of moodule
+     */
+    const DIR = __DIR__;
+
     public $config;
     protected $isAdminLoaded = false;
 
