@@ -2,9 +2,11 @@
 
 namespace LibraApp;
 
+use Zend\Console\Adapter\AdapterInterface as ConsoleAdapter;
 use Zend\Console\Console;
 use Zend\Mvc\ModuleRouteListener;
 use Zend\Mvc\MvcEvent;
+use Zend\Version\Version as ZendVersion;
 
 class Module
 {
@@ -170,4 +172,8 @@ class Module
         }
     }
 
+    public function getConsoleBanner(ConsoleAdapter $console)
+    {
+        return sprintf("Libra CMS\nZend Framework %s", ZendVersion::VERSION);
+    }
 }

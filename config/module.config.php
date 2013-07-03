@@ -129,6 +129,14 @@ return array(
             ),
         ),
     ),
+    //Enable console
+    'console' => array(
+        'router' => array(
+            'routes' => array(
+
+            ),
+        ),
+    ),
     'controllers' => array(
         'aliases' => array(
             'libra-app/index' => 'LibraApp\Controller\Index',
