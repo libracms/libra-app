@@ -14,6 +14,7 @@
         "libra/libra-assets-installer":     "dev-master",
         "libra/libra":                      "dev-master",
         "libra/libra-module-manager":       "dev-master",
+        "zf-commons/zfc-user":              "0.*",
         "mwillbanks/zfc-twitter-bootstrap": "@dev",
         "dlu/dlutwbootstrap":               "~0.1.4",
         "dlu/dlutwbootstrapdemo":           "~0.1.2"
