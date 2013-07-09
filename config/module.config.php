@@ -133,9 +133,17 @@ return array(
     'console' => array(
         'router' => array(
             'routes' => array(
-
-            ),
-        ),
+                'updater' => array(
+                    'options' => array(
+                        'route'    => 'updater [update] [<version-from>] [<version-to>] [--help|-h]:help',
+                        'defaults' => array(
+                            'controller' => 'LibraApp\Controller\Updater',
+                            'action'     => 'update'
+                        )
+                    )
+                )
+            )
+        )
     ),
     'controllers' => array(
         'aliases' => array(
@@ -144,6 +152,7 @@ return array(
         ),
         'invokables' => array(
             'LibraApp\Controller\Index'         => 'LibraApp\Controller\IndexController',
+            'LibraApp\Controller\Updater'       => 'LibraApp\Controller\UpdaterController',
             'LibraApp\Controller\Admin\Index'           => 'LibraApp\Controller\Admin\IndexController',
             'LibraApp\Controller\Admin\Dashboard'       => 'LibraApp\Controller\Admin\DashboardController',
             'LibraApp\Controller\Admin\Config\General'  => 'LibraApp\Controller\Admin\Config\GeneralController',

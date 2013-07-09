@@ -48,6 +48,15 @@ class Module
         );
     }
 
+    public function getServiceConfig()
+    {
+        return array(
+            'invokables' => array(
+                'LibraApp\Service\Updater' => 'LibraApp\Service\Updater',
+            ),
+        );
+    }
+
     public function appBootstrap(MvcEvent $e)
     {
         if ($this->isAdminLoaded) return; //fix for Controller: libra-article/admin-(resolves to invalid controller class or alias: libra-article/admin-)

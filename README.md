@@ -23,3 +23,8 @@ Libra Application
         libra/twitter-bootstrap-assets
         libra/fancybox-assets
     Libra CMS repo contains them by default.
+
+###Udater
+```
+    bin/application updater update 0.3.5
+```
