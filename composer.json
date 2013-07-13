@@ -2,7 +2,7 @@
     "name":         "libra/libra-app",
     "type":         "library",
     "description":  "Application module and administration for Libra CMS",
-    "keywords":     ["zf", "zf2", "zendframework", "cms", "libra"],
+    "keywords":     ["zf", "zf2", "zend framework", "cms", "libra"],
     "homepage":     "http://www.ejoom.com/libra-cms",
     "license":      "BSD-3-Clause",
     "authors": [

@@ -12,6 +12,7 @@ $this->headLink()->appendStylesheet($basePath . '/vendor/libra/twitter-bootstrap
                  ->appendStylesheet($basePath . '/vendor/libra/twitter-bootstrap-assets/css/bootstrap-responsive.css')
                  //->appendStylesheet($basePath . '/vendor/jquery-ui/css/smoothness/jquery-ui.custom.css')
                  ->appendStylesheet($basePath . '/vendor/libra/fancybox-assets/source/jquery.fancybox.css')
+                 //->appendStylesheet($basePath . '/vendor/libra/datatables-assets/css/jquery.dataTables.css')
                  ->appendStylesheet($layoutPath . '/css/style.css')  //@TODO need delete
                  ->appendStylesheet($layoutPath . '/css/screen.css');
 
@@ -31,6 +32,7 @@ $this->headScript()
     //->appendFile($basePath . '/vendor/jquery-ui/js/jquery-ui.custom.min.js')
     ->appendFile($basePath . '/vendor/libra/twitter-bootstrap-assets/js/bootstrap.js')
     ->appendFile($basePath . '/vendor/libra/fancybox-assets/source/jquery.fancybox.js')
+    //->appendFile($basePath . '/vendor/libra/datatables-assets/js/jquery.dataTables.min.js')
     ;
 echo $this->doctype();
 ?>

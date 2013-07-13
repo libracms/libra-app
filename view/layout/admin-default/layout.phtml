@@ -9,8 +9,9 @@ $this->headLink()->appendStylesheet($basePath . '/vendor/libra/twitter-bootstrap
                  ->appendStylesheet($basePath . '/vendor/libra/twitter-bootstrap-assets/css/bootstrap-responsive.css')
                  //->appendStylesheet($basePath . '/vendor/jquery-ui/css/smoothness/jquery-ui.custom.css')
                  ->appendStylesheet($basePath . '/vendor/libra/fancybox-assets/source/jquery.fancybox.css')
-                 ->appendStylesheet($layoutPath . '/css/screen.css')
                  ->appendStylesheet($modulePath . '/css/form-actions-screen.css')
+                 //->appendStylesheet($basePath . '/vendor/libra/datatables-assets/css/jquery.dataTables.css')
+                 ->appendStylesheet($layoutPath . '/css/screen.css')
         ;
 
 $this->headLink(array(
@@ -31,6 +32,7 @@ $this->headScript()
     ->appendFile($basePath . '/vendor/libra/twitter-bootstrap-assets/js/bootstrap.js')
     ->appendFile($basePath . '/vendor/libra/fancybox-assets/source/jquery.fancybox.js')
     ->appendFile($modulePath . '/js/form-actions.js')
+    ->appendFile($basePath . '/vendor/libra/datatables-assets/js/jquery.dataTables.min.js')
     ;
 
 echo $this->doctype();
