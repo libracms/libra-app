@@ -126,6 +126,10 @@ echo $this->doctype();
       <p>Created by <a href="http://www.ejoom.com" target="_blank">eJoom Software</a>.
         Developed under the BSD-3-Clause License.
       </p>
+      <?php
+        $scriptRunDuration = ceil((microtime(true) - @$_SERVER['REQUEST_TIME_FLOAT']) * 1000);
+      ?>
+      <p class="muted"><small><?php echo $this->translate(sprintf("Generated in <b>%s</b> ms", $scriptRunDuration)) ?></small></p>
 
     </div> <!-- /container -->
     <?php echo $this->inlineScript() ?>

@@ -96,6 +96,11 @@ echo $this->doctype();
         <p>&copy; 2008 - <?php echo date('Y') ?> by <a href="http://www.ejoom.com" target="_blank">eJoom Software</a>. All rights reserved.</p>
       </footer>
 
+      <?php
+        $scriptRunDuration = ceil((microtime(true) - @$_SERVER['REQUEST_TIME_FLOAT']) * 1000);
+      ?>
+      <p class="muted"><small><?php echo $this->translate(sprintf("Generated in <b>%s</b> ms", $scriptRunDuration)) ?></small></p>
+
     </div><!--/.fluid-container-->
     <?php echo $this->inlineScript() ?>
   </body>
