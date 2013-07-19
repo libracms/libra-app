@@ -2,6 +2,46 @@
 return array(
     'router' => array(
         'routes' => array(
+            'libra-app' => array(
+                'type' => 'Literal',
+                'options' => array(
+                    'route'    => '/libra-app',
+                    'defaults' => array(
+                        '__NAMESPACE__' => 'LibraApp\Controller',
+                        'controller' => 'Index',
+                        'action'     => 'index',
+                    ),
+                ),
+                'may_terminate' => false,
+                'child_routes' => array(
+                    'index' => array(
+                        'type' => 'Segment',
+                        'options' => array(
+                            'route' => '/index[/:action]',
+                            'constraints' => array(
+                                'action'     => '[a-zA-Z][a-zA-Z0-9_-]*',
+                            ),
+                            'defaults' => array(
+                                'controller' => 'Index',
+                                'action'     => 'index',
+                            ),
+                        ),
+                    ),
+                    'markdown' => array(
+                        'type' => 'Segment',
+                        'options' => array(
+                            'route' => '/markdown[/:action]',
+                            'constraints' => array(
+                                'action'     => '[a-zA-Z][a-zA-Z0-9_-]*',
+                            ),
+                            'defaults' => array(
+                                'controller' => 'Markdown',
+                                'action'     => 'view',
+                            ),
+                        ),
+                    ),
+                ),
+            ),
             'default' => array(
                 'type'    => 'Zend\Mvc\Router\Http\Segment',
                 'priority' => -1000,
@@ -153,6 +193,7 @@ return array(
         'invokables' => array(
             'LibraApp\Controller\Index'         => 'LibraApp\Controller\IndexController',
             'LibraApp\Controller\Updater'       => 'LibraApp\Controller\UpdaterController',
+            'LibraApp\Controller\Markdown'      => 'LibraApp\Controller\MarkdownController',
             'LibraApp\Controller\Admin\Index'           => 'LibraApp\Controller\Admin\IndexController',
             'LibraApp\Controller\Admin\Dashboard'       => 'LibraApp\Controller\Admin\DashboardController',
             'LibraApp\Controller\Admin\Config\General'  => 'LibraApp\Controller\Admin\Config\GeneralController',

@@ -1,0 +1,9 @@
+<?php
+if ($errorMessage) {
+    printf('<div class="text-error">%s</div>', $errorMessage);
+}
+
+if ($fileContent) {
+    echo $this->markdown($fileContent);
+}
+?>
