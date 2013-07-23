@@ -12,6 +12,11 @@ use Libra\Mvc\Service\AbstractEntityManagerProvider;
  */
 class Updater extends AbstractEntityManagerProvider
 {
+    public function getEntityName()
+    {
+        return null;
+    }
+
     public function updateIfFromLE035()
     {
         $em = $this->getEntityManager();
