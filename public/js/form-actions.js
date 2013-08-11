@@ -1,10 +1,3 @@
-(function($) {
-    
-
-
-    
-})(window);
-
 jQuery(function($) {
     $(".entity-actions-enter")
     .on("click", function() {
