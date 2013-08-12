@@ -1,7 +1,7 @@
 {
     "name":         "libra/libra-app",
-    "type":         "library",
-    "description":  "Application module and administration for Libra CMS",
+    "type":         "asset-aware",
+    "description":  "Application module and administration for ZF2 application",
     "keywords":     ["zf", "zf2", "zend framework", "cms", "libra"],
     "homepage":     "http://www.ejoom.com/libra-cms",
     "license":      "BSD-3-Clause",
@@ -11,7 +11,7 @@
 
     "require": {
         "php":                              ">=5.3.3",
-        "libra/libra-assets-installer":     "2.0.*",
+        "libra/libra-assets-installer":     "2.*",
         "zendframework/zendframework":      "2.2.*",
         "libra/libra":                      "dev-master",
         "zf-commons/zfc-user":              "0.*",
@@ -34,10 +34,6 @@
         "classmap": ["Module.php"]
     },
 
-    "provide": {
-      
-    },
-
     "suggest": {
         "libra/libra-article": "Add main CMS functionality",
         "libra/jquery-assets": "Add jQuery if you don't specify it in another way",
@@ -45,5 +41,4 @@
         "libra/twitter-bootstrap-assets": "Add fine css framework if you don't specify it in another way",
         "libra/fancybox-assets": "Add JS sliders if you don't specify it in another way"
     }
-
 }
