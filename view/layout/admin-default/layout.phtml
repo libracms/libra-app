@@ -1,32 +1,41 @@
 <?php
-$this->headTitle()->setSeparator(' - ')
-                  ->setAutoEscape(false);
+$this->headTitle()->setSeparator(' - ')->setAutoEscape(false);
 
 $basePath = $this->basePath();
 $modulePath = $basePath . '/vendor/libra/libra-app';
 $layoutPath = $basePath . '/vendor/libra/libra-app/layout/admin-default';
-$this->headLink()->appendStylesheet($basePath . '/vendor/libra/twitter-bootstrap-assets/css/bootstrap.css')
-                 ->appendStylesheet($basePath . '/vendor/libra/twitter-bootstrap-assets/css/bootstrap-responsive.css')
-                 //->appendStylesheet($basePath . '/vendor/jquery-ui/css/smoothness/jquery-ui.custom.css')
-                 ->appendStylesheet($basePath . '/vendor/libra/fancybox-assets/source/jquery.fancybox.css')
-                 ->appendStylesheet($modulePath . '/css/form-actions-screen.css')
-                 //->appendStylesheet($basePath . '/vendor/libra/datatables-assets/css/jquery.dataTables.css')
-                 ->appendStylesheet($layoutPath . '/css/screen.css')
-        ;
+$this->headLink()
+    ->appendStylesheet($basePath . '/vendor/libra/twitter-bootstrap-assets/css/bootstrap.css')
+    ->appendStylesheet($basePath . '/vendor/libra/twitter-bootstrap-assets/css/bootstrap-responsive.css')
+    //->appendStylesheet($basePath . '/vendor/jquery-ui/css/smoothness/jquery-ui.custom.css')
+    ->appendStylesheet($basePath . '/vendor/libra/fancybox-assets/source/jquery.fancybox.css')
+    ->appendStylesheet($modulePath . '/css/form-actions-screen.css')
+    //->appendStylesheet($basePath . '/vendor/libra/datatables-assets/css/jquery.dataTables.css')
+    ->appendStylesheet($layoutPath . '/css/screen.css')
+;
 
 $this->headLink(array(
-            'rel'  => 'shortcut icon',
-            'type' => 'image/vnd.microsoft.icon',
-            'href' => $modulePath . '/images/favicon.ico',
-        ));
+    'rel'  => 'shortcut icon',
+    'type' => 'image/vnd.microsoft.icon',
+    'href' => $modulePath . '/images/favicon.ico',
+));
 
 $this->headScript()
-    // HTML5 shim, for IE6-8 support of HTML elements
-    //->appendFile($basePath . $modulePath . '/js/html5.js', null, array('conditional' => 'lt IE 9',))
-    ->appendFile('http://html5shim.googlecode.com/svn/trunk/html5.js', null, array('conditional' => 'lt IE 9',))
     //->prependFile('https://ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js')
     //->appendFile('/vendor/jquery-ui/js/jquery-1.7.1.min.js')
     ->prependFile($basePath. '/vendor/libra/jquery-assets/js/jquery.min.js')
+    ->prependFile(
+        $modulePath . '/js/respond.min.js',
+        'text/javascript',
+        array('conditional' => 'lt IE 9',)
+    )
+    // HTML5 shim, for IE6-8 support of HTML elements
+    //->appendFile($modulePath . '/js/html5.js', 'text/javascript', array('conditional' => 'lt IE 9',))
+    ->appendFile(
+        'http://html5shim.googlecode.com/svn/trunk/html5.js',
+        'text/javascript',
+        array('conditional' => 'lt IE 9',)
+    )
     ->appendFile($basePath. '/vendor/libra/jquery-assets/js/jquery-migrate.min.js')
     //->appendFile('/vendor/jquery-ui/js/jquery-ui.custom.min.js')
     ->appendFile($basePath . '/vendor/libra/twitter-bootstrap-assets/js/bootstrap.js')

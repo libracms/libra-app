@@ -2,34 +2,43 @@
 $user = null;
 //$this->plugin('translate')->setTranslator(new \Zend\I18n\Translator\Translator());
 
-$this->headTitle()->setSeparator(' - ')
-                  ->setAutoEscape(false);
+$this->headTitle()
+    ->setSeparator(' - ')
+    ->setAutoEscape(false);
 
 $basePath = $this->basePath();
 $modulePath = $basePath . '/vendor/libra/libra-app';
 $layoutPath = $basePath . '/vendor/libra/libra-app/layout/default';
-$this->headLink()->appendStylesheet($basePath . '/vendor/libra/twitter-bootstrap-assets/css/bootstrap.css')
-                 ->appendStylesheet($basePath . '/vendor/libra/twitter-bootstrap-assets/css/bootstrap-responsive.css')
-                 //->appendStylesheet($basePath . '/vendor/jquery-ui/css/smoothness/jquery-ui.custom.css')
-                 ->appendStylesheet($basePath . '/vendor/libra/fancybox-assets/source/jquery.fancybox.css')
-                 //->appendStylesheet($basePath . '/vendor/libra/datatables-assets/css/jquery.dataTables.css')
-                 ->appendStylesheet($layoutPath . '/css/style.css')  //@TODO need delete
-                 ->appendStylesheet($layoutPath . '/css/screen.css');
+$this->headLink()
+    ->appendStylesheet($basePath . '/vendor/libra/twitter-bootstrap-assets/css/bootstrap.css')
+    ->appendStylesheet($basePath . '/vendor/libra/twitter-bootstrap-assets/css/bootstrap-responsive.css')
+    //->appendStylesheet($basePath . '/vendor/jquery-ui/css/smoothness/jquery-ui.custom.css')
+    ->appendStylesheet($basePath . '/vendor/libra/fancybox-assets/source/jquery.fancybox.css')
+    //->appendStylesheet($basePath . '/vendor/libra/datatables-assets/css/jquery.dataTables.css')
+    ->appendStylesheet($layoutPath . '/css/style.css')  //@TODO need delete
+    ->appendStylesheet($layoutPath . '/css/screen.css');
 
 $this->headLink(array(
-            'rel'  => 'shortcut icon',
-            'type' => 'image/vnd.microsoft.icon',
-            'href' => $modulePath . '/images/favicon.ico',
-        ));
+    'rel'  => 'shortcut icon',
+    'type' => 'image/vnd.microsoft.icon',
+    'href' => $modulePath . '/images/favicon.ico',
+));
 
 // HTML5 shim, for IE6-8 support of HTML elements
 $this->headScript()
-    ->appendFile($layoutPath . '/js/html5.js', 'text/javascript',
-        array('conditional' => 'lt IE 9',))
     //->prependFile('https://ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js')
-    //->appendFile('/vendor/jquery-ui/js/jquery-1.7.1.min.js')
-    ->prependFile($basePath. '/vendor/libra/jquery-assets/js/jquery.min.js')
-    //->appendFile($basePath . '/vendor/jquery-ui/js/jquery-ui.custom.min.js')
+    //->prependFile($basePath . '/vendor/jquery-ui/js/jquery-ui.custom.min.js')
+    ->prependFile($basePath . '/vendor/libra/jquery-assets/js/jquery.min.js')
+    ->prependFile(
+        $modulePath . '/js/respond.min.js',
+        'text/javascript',
+        array('conditional' => 'lt IE 9',)
+    )
+    ->prependFile(
+        $modulePath . '/js/html5shiv.js',
+        'text/javascript',
+        array('conditional' => 'lt IE 9',)
+    )
     ->appendFile($basePath . '/vendor/libra/twitter-bootstrap-assets/js/bootstrap.js')
     ->appendFile($basePath . '/vendor/libra/fancybox-assets/source/jquery.fancybox.js')
     //->appendFile($basePath . '/vendor/libra/datatables-assets/js/jquery.dataTables.min.js')
@@ -42,7 +51,10 @@ echo $this->doctype();
     <meta charset="utf-8">
     <?php echo $this->headTitle('Libra CMS') ?>
 
-    <?php echo $this->headMeta()->appendName('viewport', 'width=device-width, initial-scale=1.0') ?>
+    <?php echo $this->headMeta()
+        ->appendName('viewport', 'width=device-width, initial-scale=1.0')
+        ->appendHttpEquiv('X-UA-Compatible', 'IE=edge')
+    ?>
 
     <!-- Le styles -->
     <?php echo $this->headLink() ?>

@@ -179,11 +179,11 @@ return array(
                         'defaults' => array(
                             'controller' => 'LibraApp\Controller\Updater',
                             'action'     => 'update'
-                        )
-                    )
-                )
-            )
-        )
+                        ),
+                    ),
+                ),
+            ),
+        ),
     ),
     'controllers' => array(
         'aliases' => array(
@@ -200,13 +200,13 @@ return array(
         ),
     ),
     'view_manager' => array(
-        'display_not_found_reason' => true,
-        'display_exceptions'       => true,
+        'display_not_found_reason' => false,
+        'display_exceptions'       => false,
         'doctype'                  => 'HTML5',
         'not_found_template'       => 'error/404',
         'exception_template'       => 'error/index',
         'template_map' => array(
-            'layout/layout' => __DIR__ . '/../view/layout/layout.phtml',
+            'layout/layout' => __DIR__ . '/../view/layout/default/layout.phtml',
             'error/404'     => __DIR__ . '/../view/error/404.phtml',
             'error/index'   => __DIR__ . '/../view/error/index.phtml',
         ),
@@ -228,20 +228,6 @@ return array(
                 'pattern'     => '%s.php',
             ),
         ),
-        /*'translation_files' => array(
-            array(
-                'type' => 'phparray',
-                'filename' => __DIR__ . '/../language/en_GB.php',
-                'text_domain' => 'default',
-                'locale' => 'en_GB',
-            ),
-            array(
-                'type' => 'phparray',
-                'filename' => __DIR__ . '/../language/ru_RU.php',
-                'text_domain' => 'default',
-                'locale' => 'ru_RU',
-            ),
-        ),*/
     ),
 
     //avoid error set empty navigation
