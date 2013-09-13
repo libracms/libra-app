@@ -30,6 +30,12 @@
         "classmap": ["Module.php"]
     },
 
+    "extra": {
+        "branch-alias": {
+            "dev-master": "0.5.x-dev"
+        }
+    },
+
     "suggest": {
         "libra/libra-locale": "Add locales to application",
         "libra/libra-article": "Add main CMS functionality",
