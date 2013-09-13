@@ -62,18 +62,6 @@ return array(
                     ),
                 ),
             ),
-            'home' => array(
-                'type' => 'Zend\Mvc\Router\Http\Literal',
-                'options' => array(
-                    'route'    => '/',
-                    'defaults' => array(
-                        //'__NAMESPACE__' => 'LibraApp\Controller',
-                        'module'     => 'libra-app',
-                        'controller' => 'Index',
-                        'action'     => 'index',
-                    ),
-                ),
-            ),
             'admin' => array(
                 'type'    => 'Zend\Mvc\Router\Http\Literal',
                 'options' => array(
@@ -217,8 +205,8 @@ return array(
 
     'translator' => array(
         'locale' => array(
-            'en-US',
-            //'ru-RU', //fallback language
+            'en-US',  //default locale
+            'en-US',  //fallback language
         ),
         'translation_file_patterns' => array(
             array(
