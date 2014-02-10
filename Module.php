@@ -124,7 +124,8 @@ class Module
         $controllerName  = $routeMatch->getParam('controller');
         $moduleNamespace = $routeMatch->getParam(ModuleRouteListener::MODULE_NAMESPACE);
         if (
-            strpos($routeMatch->getMatchedRouteName(), 'admin/') === 0
+            (strpos($routeMatch->getMatchedRouteName(), 'admin/') === 0
+                || $routeMatch->getMatchedRouteName() === 'admin')
             && stripos($controllerName, 'admin') !== 0
             && stripos($controllerName, 'Controller\Admin') === false
             && stripos($moduleNamespace, 'Controller\Admin') === false
@@ -143,7 +144,9 @@ class Module
         $routeMatch      = $e->getRouteMatch();
         //$controllerName  = $routeMatch->getParam('controller');
         //$moduleNamespace = $routeMatch->getParam(ModuleRouteListener::MODULE_NAMESPACE);
-        if (strpos($routeMatch->getMatchedRouteName(), 'admin/') === 0
+        if (
+            (strpos($routeMatch->getMatchedRouteName(), 'admin/') === 0
+                || $routeMatch->getMatchedRouteName() === 'admin')
             //|| stripos($controllerName, 'admin') === 0
             //|| stripos($moduleNamespace, 'Controller\Admin') !== false //@todo clean up after ver. 0.5.0
         ) {
@@ -178,6 +181,8 @@ class Module
         if ($moduleName && $controllerName) {
             $controllerName = $moduleName . '/' . $controllerName;
             $routeMatch->setParam('controller', $controllerName);
+            // Copy to NS to work any other
+            $routeMatch->setParam(ModuleRouteListener::MODULE_NAMESPACE, $moduleName);
         }
     }
 
