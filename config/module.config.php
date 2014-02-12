@@ -66,20 +66,14 @@ return array(
                 'type'    => 'Zend\Mvc\Router\Http\Literal',
                 'options' => array(
                     'route'    => '/admin',
-                    'defaults' => array(
-                        '__NAMESPACE__' => 'LibraApp\Controller\Admin',
-                        //'module'     => 'libra-app',
-                        'controller' => 'Index',
-                        'action'     => 'index',
-                    ),
                 ),
-                'may_terminate' => true,
+                'may_terminate' => false,
                 'child_routes' => array(
                     //insert here you admin routers
                     'home' => array(
-                        'type' => 'Literal',
+                        'type' => 'Segment',
                         'options' => array(
-                            'route' => '/',
+                            'route' => '[/]',
                             'defaults' => array(
                                 '__NAMESPACE__' => 'LibraApp\Controller\Admin',
                                 //'module'     => 'libra-app',
