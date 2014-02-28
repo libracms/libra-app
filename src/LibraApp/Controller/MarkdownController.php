@@ -21,6 +21,10 @@ class MarkdownController extends AbstractActionController
         $file = $this->params()->fromQuery('file');
 
         if ($file) {
+            if (is_dir($file)) {
+                $file = rtrim($file, '/') . '/README.md';
+            }
+
             if (strpos($file, '.md', strlen($file) - 3) === false) {
                 $file = $file . '.md';
             }
@@ -36,8 +40,8 @@ class MarkdownController extends AbstractActionController
         }
 
         return new ViewModel(array(
-            'fileContent' => $fileContent,
-            'errorMessage'   => $errorMessage,
+            'fileContent'  => $fileContent,
+            'errorMessage' => $errorMessage,
         ));
     }
 }
