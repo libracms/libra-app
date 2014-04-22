@@ -17,7 +17,7 @@
         "libra/libra-markdown":             "1.*",
         "libra/libra-navigation":           "0.*",
         "libra/twitter-bootstrap-assets":   "2.3.*",
-        "libra/jquery-assets":              "~1.10.0",
+        "libra/jquery-assets":              "~1.10",
         "zendframework/zend-authentication":"2.3.*",
         "zendframework/zend-console":       "2.3.*",
         "zendframework/zend-di":            "2.3.*",
@@ -49,8 +49,8 @@
 
     "extra": {
         "branch-alias": {
-            "dev-master": "0.5.x-dev",
-            "dev-dev": "0.6.x-dev"
+            "dev-master": "0.6.x-dev",
+            "dev-dev": "0.7.x-dev"
         }
     },
 
