@@ -27,7 +27,7 @@
         "zendframework/zend-i18n":          "2.3.*",
         "zendframework/zend-inputfilter":   "2.3.*",
         "zendframework/zend-json":          "2.3.*",
-        "zendframework/zend-navigation:":   "2.3.*",
+        "zendframework/zend-navigation":    "2.3.*",
         "zendframework/zend-modulemanager": "2.3.*",
         "zendframework/zend-mvc":           "2.3.*",
         "zendframework/zend-session":       "2.3.*",
