@@ -151,7 +151,8 @@ class Module
             //|| stripos($moduleNamespace, 'Controller\Admin') !== false //@todo clean up after ver. 0.5.0
         ) {
             //check permissions and do redirect to login logaction
-            if (!$user = $e->getApplication()->getServiceManager()->get('zfcuser_auth_service')->getIdentity()) {
+            $rbacRoleService = $e->getApplication()->getServiceManager()->get('ZfcRbac\Service\RoleService');
+            if (!$rbacRoleService->matchIdentityRoles(['manager'])) {
                 $_SESSION['tried_url'] = $_SERVER['REQUEST_URI'];
                 $flashMessenger = new \Zend\Mvc\Controller\Plugin\FlashMessenger();
                 $flashMessenger->setNamespace('zfcuser-login-form')->addMessage('Restricted area. You should login first');

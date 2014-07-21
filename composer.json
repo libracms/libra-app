@@ -37,9 +37,7 @@
         "zendframework/zend-validator":     "2.3.*",
         "zendframework/zend-version":       "2.3.*",
         "zendframework/zend-view":          "2.3.*",
-        "mwillbanks/zfc-twitter-bootstrap": "dev-master",
-        "dlu/dlutwbootstrap":               "~0.1.4",
-        "dlu/dlutwbootstrapdemo":           "~0.1.2"
+        "zf-commons/zfc-rbac":              "~2.3"
     },
 
     "autoload": {
@@ -50,6 +48,7 @@
     "extra": {
         "branch-alias": {
             "dev-master": "0.6.x-dev",
+            "dev-twb3": "0.7.x-dev",
             "dev-dev": "0.7.x-dev"
         }
     },

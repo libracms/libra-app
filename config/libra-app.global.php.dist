@@ -2,6 +2,13 @@
 $config = array(
     'layoutName' => 'default',
     'adminLayoutName' => 'default',
+
+    // Default visitor configurations if unknown:
+    'identity' => array(
+        'timezone' => 'Europe/Kiev',
+        'locale' => 'en-US',
+        'roles' => array('guest'),
+    )
 );
 
 return array(

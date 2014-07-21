@@ -239,6 +239,33 @@ return array(
         ),
     ),
 
+    'zfc_rbac' => [
+        'guards' => [
+            'ZfcRbac\Guard\RouteGuard' => [
+                'admin/home' => ['admin', 'manager'],
+                'admin/libra-app' => ['admin', 'manager'],
+            ],
+            'ZfcRbac\Guard\ControllerGuard' => [
+                [
+                    'controller' => 'LibraApp\Controller\Admin\*',
+                    'roles' => ['admin', 'manager'],
+                ],
+                [
+                    'controller' => 'LibraApp\Controller\Admin\Index',
+                    'roles' => ['admin', 'manager'],
+                ],
+                [
+                    'controller' => 'LibraApp\Controller\Admin\Dashboard',
+                    'roles' => ['admin', 'manager'],
+                ],
+                [
+                    'controller' => 'LibraApp\Controller\Admin\Config\General',
+                    'roles' => ['admin', 'manager'],
+                ],
+            ],
+        ],
+    ],
+
     //default values
     'libra_app' => array(
         'layoutName' => 'default',
