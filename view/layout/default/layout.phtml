@@ -67,32 +67,34 @@ echo $this->doctype();
   <body>
     <div class="container">
       <header class="row">
-        <div class="span12 header">
-          <div id="head-top">
-            <?php echo '' ?>
+        <div class="col-sm-12">
+          <div class="header">
+            <div id="head-top">
+              <?php echo '' ?>
+            </div>
+            <div style="text-align: center; padding: 0 25px;">
+              <a id="brand-name" href="<?php echo $this->url('home') ?>"><?php printf('♎ Libra CMS') ?></a>
+            </div>
+            <div id="head-bottom"><?php echo 'Free Open Source  Content Management system' ?></div>
+            <?php if (LibraModuleManager\Module::isModulePresent('LibraLocale')): ?>
+            <div id="locales">
+                <a href="<?php echo $this->url('libra-locale/switch', array(), array('query' => array('to' => 'en'))) ?>">
+                    <img src="<?php echo $layoutPath."/images/gb.png"?>" alt="en" title="English"/>
+                </a>
+                <a href="<?php echo $this->url('libra-locale/switch', array(), array('query' => array('to' => 'ru'))) ?>">
+                    <img src="<?php echo $layoutPath."/images/ru.png"?>" alt="ru" title="Русский"/>
+                </a>
+                <div id="loginform">
+                  <?php
+                  if (null == $user) {
+                      echo $this->renderChildModel('login');
+                  } else { ?>
+                  <a class="logout" href="<?php echo $this->url('zfcuser/logout') ?>"><?php echo $this->translate('Sign Out') ?></a>
+                  <?php } ?>
+                </div>
+            </div>
+            <?php endif ?>
           </div>
-          <div style="text-align: center; padding: 0 25px;">
-            <a id="brand-name" href="<?php echo $this->url('home') ?>"><?php printf('♎ Libra CMS') ?></a>
-          </div>
-          <div id="head-bottom"><?php echo 'Free Open Source  Content Management system' ?></div>
-          <?php if (LibraModuleManager\Module::isModulePresent('LibraLocale')): ?>
-          <div id="locales">
-              <a href="<?php echo $this->url('libra-locale/switch', array(), array('query' => array('to' => 'en'))) ?>">
-                  <img src="<?php echo $layoutPath."/images/gb.png"?>" alt="en" title="English"/>
-              </a>
-              <a href="<?php echo $this->url('libra-locale/switch', array(), array('query' => array('to' => 'ru'))) ?>">
-                  <img src="<?php echo $layoutPath."/images/ru.png"?>" alt="ru" title="Русский"/>
-              </a>
-              <div id="loginform">
-                <?php
-                if (null == $user) {
-                    echo $this->renderChildModel('login');
-                } else { ?>
-                <a class="logout" href="<?php echo $this->url('zfcuser/logout') ?>"><?php echo $this->translate('Sign Out') ?></a>
-                <?php } ?>
-              </div>
-          </div>
-          <?php endif ?>
         </div>
       </header>
 
@@ -101,11 +103,11 @@ echo $this->doctype();
       </div>
 
       <div class="row">
-        <div class="span3">
+        <div class="col-sm-3">
           <div class="well sidebar-nav">
             <?php
               $options = array(
-                  'ulClass' => 'nav nav-list',
+                  'ulClass' => 'nav nav-pills nav-stacked',
               );
               echo $this->navigation()->findHelper('menu')->renderMenu('navigation', $options);
             ?>
@@ -115,7 +117,7 @@ echo $this->doctype();
           </div>
         </div>
 
-        <div class="span9">
+        <div class="col-sm-9">
           <div class="well">
             <!--p>
               <?php echo $this->navigation()->breadcrumbs() ?>
@@ -127,12 +129,12 @@ echo $this->doctype();
 
       <footer class="well">
         <div class="row">
-          <div class="span3" style="text-align: center"><p><?php printf('© eJoom, 2012 - %1$d', date('Y')) ?> </p></div>
-          <div class="span6">
+          <div class="col-sm-3" style="text-align: center"><p><?php printf('© eJoom, 2012 - %1$d', date('Y')) ?> </p></div>
+          <div class="col-sm-6">
             <p><?php echo $this->translate('TRANSLATE') ?></p>
             <p><?php echo 'Privacy, Disclaimer, Terms & Conditions, and Copyright Info' ?></p>
           </div>
-          <div class="span2"><p>Based at <img src="<?php echo $layoutPath ?>/images/zf2-logo.png" /></p></div>
+          <div class="col-sm-3"><p>Based at <img src="<?php echo $layoutPath ?>/images/zf2-logo.png" /></p></div>
         </div>
       </footer>
       <p>Created by <a href="http://www.ejoom.com" target="_blank">eJoom Software</a>.
@@ -141,7 +143,7 @@ echo $this->doctype();
       <?php
         $scriptRunDuration = ceil((microtime(true) - @$_SERVER['REQUEST_TIME_FLOAT']) * 1000);
       ?>
-      <p class="muted"><small><?php echo $this->translate(sprintf("Generated in <b>%s</b> ms", $scriptRunDuration)) ?></small></p>
+      <p class="text-muted"><small><?php echo $this->translate(sprintf("Generated in <b>%s</b> ms", $scriptRunDuration)) ?></small></p>
 
     </div> <!-- /container -->
     <?php echo $this->inlineScript() ?>
