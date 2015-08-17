@@ -1,4 +1,6 @@
 <?php
+// TODO: add chooser for multi templating (mb?)
+//$templateName = 'default';
 $user = null;
 //$this->plugin('translate')->setTranslator(new \Zend\I18n\Translator\Translator());
 
@@ -11,12 +13,11 @@ $modulePath = $basePath . '/vendor/libra/libra-app';
 $layoutPath = $basePath . '/vendor/libra/libra-app/layout/default';
 $this->headLink()
     ->appendStylesheet($basePath . '/vendor/libra/twitter-bootstrap-assets/css/bootstrap.css')
-    ->appendStylesheet($basePath . '/vendor/libra/twitter-bootstrap-assets/css/bootstrap-responsive.css')
     //->appendStylesheet($basePath . '/vendor/jquery-ui/css/smoothness/jquery-ui.custom.css')
     ->appendStylesheet($basePath . '/vendor/libra/fancybox-assets/source/jquery.fancybox.css')
     //->appendStylesheet($basePath . '/vendor/libra/datatables-assets/css/jquery.dataTables.css')
-    ->appendStylesheet($layoutPath . '/css/style.css')  //@TODO need delete
-    ->appendStylesheet($layoutPath . '/css/screen.css');
+    ->appendStylesheet($layoutPath . '/css/style.css')  // All media types
+;
 
 $this->headLink(array(
     'rel'  => 'shortcut icon',

@@ -6,12 +6,12 @@ $modulePath = $basePath . '/vendor/libra/libra-app';
 $layoutPath = $basePath . '/vendor/libra/libra-app/layout/admin-default';
 $this->headLink()
     ->appendStylesheet($basePath . '/vendor/libra/twitter-bootstrap-assets/css/bootstrap.css')
-    ->appendStylesheet($basePath . '/vendor/libra/twitter-bootstrap-assets/css/bootstrap-responsive.css')
     //->appendStylesheet($basePath . '/vendor/jquery-ui/css/smoothness/jquery-ui.custom.css')
     ->appendStylesheet($basePath . '/vendor/libra/fancybox-assets/source/jquery.fancybox.css')
-    ->appendStylesheet($modulePath . '/css/form-actions-screen.css')
+    ->appendStylesheet($modulePath . '/css/form-actions-style'
+        . '.css')
     //->appendStylesheet($basePath . '/vendor/libra/datatables-assets/css/jquery.dataTables.css')
-    ->appendStylesheet($layoutPath . '/css/screen.css')
+    ->appendStylesheet($layoutPath . '/css/style.css')
 ;
 
 $this->headLink(array(
