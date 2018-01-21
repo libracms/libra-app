@@ -17,7 +17,7 @@
         "libra/libra-markdown":             "1.*",
         "libra/libra-navigation":           "0.*",
         "libra/twitter-bootstrap-assets":   "3.*",
-        "libra/jquery-assets":              "^1.10",
+        "libra/jquery-assets":              "1.* || 2.* || 3.*",
         "libra/libra-user":                 "0.*",
         "zendframework/zend-authentication":"^2.3",
         "zendframework/zend-console":       "^2.3",
